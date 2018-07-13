@@ -68,7 +68,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vinance:build"
+            "browserTarget": "vinance:build",
+            "host": "vinance.com",
+            "port": 80
           },
           "configurations": {
             "production": {
