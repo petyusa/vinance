@@ -1,5 +1,27 @@
+@import '../../styles/base/variables';
+
 .header {
-  height: 6rem;
   width: 100%;
-  background-color: red;
+  background-color: $color-primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+
+  &__brand {
+    font-size: 4rem;
+    color: $color-font-primary;
+  }
+
+  &__button > * {
+    color: $color-font-primary;
+    font-size: 3rem;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-primary-light;
+    }
+  }
 }
