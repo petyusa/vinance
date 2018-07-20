@@ -1,8 +1,14 @@
-<div *ngFor="let income of incomes">
-  <span>{{ income.date | date }} </span>
-  <span>{{ income.amount }} </span>
-  <span>{{ income.to.name }} </span>
-  <span>{{ income.comment }} </span>
-  <span>{{ income.category.name }} </span>
-</div>
 <button (click)="onAdd()">Add income</button>
+<app-header></app-header>
+<div class="container">
+  <app-sidenav id="sidenav"></app-sidenav>
+  <main id="main">
+    <div *ngFor="let income of incomes">
+      <span>{{ income.date | date }} </span>
+      <span>{{ income.amount }} </span>
+      <span>{{ income.to.name }} </span>
+      <span>{{ income.comment }} </span>
+      <span>{{ income.category.name }} </span>
+    </div>
+  </main>
+</div>
