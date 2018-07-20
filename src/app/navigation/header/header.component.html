@@ -1,9 +1,9 @@
 <header>
   <div class="header">
     <span class="header__button"
-          (click)="toggleSidenav()">
+          (click)="onToggleSidenav()">
       <i class="material-icons">
-        menu
+        {{ sidenavOpen ? 'close' : 'menu' }}
       </i>
     </span>
     <div class="header__brand">

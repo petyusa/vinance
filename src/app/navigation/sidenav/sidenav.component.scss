@@ -1,0 +1,28 @@
+.sidenav {
+  height: 100vh;
+  width: 30rem;
+  padding-top: 6rem;
+  margin-left: -30rem;
+  background-color: yellow;
+
+  transition: all 0.5s;
+
+  &.open {
+    margin-left: 0px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    position: fixed;
+    top: 6rem;
+    left: 0;
+    width: 80%;
+    padding-top: 0rem;
+    margin-left: -80%;
+    background-color: yellow;
+
+    &.open {
+      margin-left: 0px;
+    }
+    transition: all 0.5s;
+  }
+}

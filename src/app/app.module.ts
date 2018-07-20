@@ -6,13 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { TransactionService } from './transaction.service';
-import { HeaderComponent } from './header/header.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavComponent } from './navigation/sidenav/sidenav.component';
+import { UIService } from './ui.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, SidenavComponent],
   imports: [AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), BrowserModule],
-  providers: [TransactionService],
+  providers: [TransactionService, UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
