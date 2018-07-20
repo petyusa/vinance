@@ -1,1 +1,8 @@
-<h1>Works!</h1>
+<div *ngFor="let income of incomes">
+  <span>{{ income.date | date }} </span>
+  <span>{{ income.amount }} </span>
+  <span>{{ income.to.name }} </span>
+  <span>{{ income.comment }} </span>
+  <span>{{ income.category.name }} </span>
+</div>
+<button (click)="onAdd()">Add income</button>
