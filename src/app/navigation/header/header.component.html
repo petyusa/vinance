@@ -1,9 +1,9 @@
 <header>
   <div class="header">
-    <span class="header__button"
+    <span [ngClass]="sidenavOpen ? 'header__button active' : 'header__button'"
           (click)="onToggleSidenav()">
       <i class="material-icons">
-        {{ sidenavOpen ? 'close' : 'menu' }}
+        menu
       </i>
     </span>
     <div class="header__brand">

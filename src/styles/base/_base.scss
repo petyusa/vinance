@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 400;
 }
 
 html {
@@ -12,7 +14,5 @@ html {
 }
 
 body {
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 400;
   min-height: 100vh;
 }

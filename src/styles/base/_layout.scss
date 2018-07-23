@@ -1,0 +1,27 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.content {
+  background-color: $color-background-secondary;
+  margin-top: 6rem;
+  padding: 1rem;
+
+  flex-grow: 1;
+
+  transition: all 0.5s;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidenav.open + .content {
+    z-index: -1;
+    opacity: 0.5;
+  }
+
+  .sidenav.open {
+    z-index: 1000;
+  }
+}

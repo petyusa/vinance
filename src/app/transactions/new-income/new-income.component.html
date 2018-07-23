@@ -1,0 +1,41 @@
+<div class="form-container">
+  <h2 class="form-container__header">Income</h2>
+  <hr>
+  <form [formGroup]="incomeForm"
+        (ngSubmit)="onAddIncome()">
+    <div class="form">
+      <label for="income-date"
+             class="form__label">Date</label>
+      <input type="date"
+             class="form__input"
+             id="income-date"
+             formControlName="date">
+      <label for="income-to"
+             class="form__label">Account To</label>
+      <input type="text"
+             class="form__input"
+             id="income-to"
+             formControlName="accountTo">
+      <label for="income-amount"
+             class="form__label">Amount</label>
+      <input type="number"
+             class="form__input"
+             id="income-amount"
+             formControlName="amount">
+      <label for="income-category"
+             class="form__label">Category</label>
+      <input type="text"
+             class="form__input"
+             id="income-category"
+             formControlName="category">
+      <label for="income-comment"
+             class="form__label">Comment</label>
+      <input type="text"
+             class="form__input"
+             id="income-comment"
+             formControlName="comment">
+    </div>
+    <button type="submit"
+            class="btn btn--primary btn--full">Add income</button>
+  </form>
+</div>

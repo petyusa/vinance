@@ -7,15 +7,4 @@ import { Subscription } from 'rxjs';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
-  constructor(private ui: UIService) {}
-
-  stateChanged: Subscription;
-  isOpen = true;
-
-  ngOnInit() {
-    this.stateChanged = this.ui.sidenavStateChanged.subscribe(() => {
-      this.isOpen = !this.isOpen;
-    });
-  }
-}
+export class SidenavComponent {}

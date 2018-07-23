@@ -1,0 +1,43 @@
+<div class="modal">
+  <div class="form-container">
+    <h2 class="form-container__header">Transfer</h2>
+    <hr>
+    <form [formGroup]="transferForm"
+          (ngSubmit)="onAddTransfer()">
+      <div class="form">
+        <label for="transfer-date"
+               class="form__label">Date</label>
+        <input type="date"
+               class="form__input"
+               id="transfer-date"
+               formControlName="date">
+        <label for="transfer-from"
+               class="form__label">Account From</label>
+        <input type="text"
+               class="form__input"
+               id="transfer-from"
+               formControlName="accountFrom">
+        <label for="transfer-to"
+               class="form__label">Account To</label>
+        <input type="text"
+               class="form__input"
+               id="transfer-to"
+               formControlName="accountTo">
+        <label for="transfer-amount"
+               class="form__label">Amount</label>
+        <input type="number"
+               class="form__input"
+               id="transfer-amount"
+               formControlName="amount">
+        <label for="transfer-comment"
+               class="form__label">Comment</label>
+        <input type="text"
+               class="form__input"
+               id="transfer-comment"
+               formControlName="comment">
+      </div>
+      <button type="submit"
+              class="btn btn--primary btn--full">Add income</button>
+    </form>
+  </div>
+</div>

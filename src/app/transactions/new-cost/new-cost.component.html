@@ -1,0 +1,41 @@
+<div class="form-container">
+  <h2 class="form-container__header">Cost</h2>
+  <hr>
+  <form [formGroup]="costForm"
+        (ngSubmit)="onAddcost()">
+    <div class="form">
+      <label for="cost-date"
+             class="form__label">Date</label>
+      <input type="date"
+             class="form__input"
+             id="cost-date"
+             formControlName="date">
+      <label for="cost-to"
+             class="form__label">Account From</label>
+      <input type="text"
+             class="form__input"
+             id="cost-to"
+             formControlName="accountFrom">
+      <label for="cost-amount"
+             class="form__label">Amount</label>
+      <input type="number"
+             class="form__input"
+             id="cost-amount"
+             formControlName="amount">
+      <label for="cost-category"
+             class="form__label">Category</label>
+      <input type="text"
+             class="form__input"
+             id="cost-category"
+             formControlName="category">
+      <label for="cost-comment"
+             class="form__label">Comment</label>
+      <input type="text"
+             class="form__input"
+             id="cost-comment"
+             formControlName="comment">
+    </div>
+    <button type="submit"
+            class="btn btn--primary btn--full">Add cost</button>
+  </form>
+</div>

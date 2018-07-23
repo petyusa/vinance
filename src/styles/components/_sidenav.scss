@@ -1,0 +1,30 @@
+@import '../base/variables';
+
+.sidenav {
+  width: $sidenav-width;
+  margin-top: $header-height;
+  margin-left: -$sidenav-width;
+  background-color: lighten($color: $color-background-primary, $amount: 5%);
+
+  transition: all 0.5s;
+
+  &.open {
+    margin-left: 0px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    height: 100vh;
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    width: $sidenav-width-mobile;
+    padding-top: 0rem;
+    margin-left: -$sidenav-width-mobile;
+    background-color: yellow;
+
+    &.open {
+      margin-left: 0px;
+    }
+    transition: all 0.5s;
+  }
+}

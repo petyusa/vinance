@@ -1,5 +1,9 @@
-@import 'styles/base/base';
 @import 'styles/base/variables';
 
+@import 'styles/base/base';
+@import 'styles/base/layout';
+
+@import 'styles/components/button';
 @import 'styles/components/header';
+@import 'styles/components/form';
 @import 'styles/components/sidenav';
