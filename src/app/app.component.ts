@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UIService } from './ui.service';
 import { Subscription } from 'rxjs';
+
+import { UIService } from './services/ui.service';
+import { NewIncomeComponent } from './transactions/new-income/new-income.component';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +19,16 @@ export class AppComponent implements OnInit {
     this.stateChanged = this.ui.sidenavStateChanged.subscribe(() => {
       this.isSidenavOpen = !this.isSidenavOpen;
     });
+  }
+
+  initLoginModal() {
+    const inputs = {
+      isMobile: false
+    };
+    this.ui.showModal(NewIncomeComponent, inputs, {});
+  }
+
+  removeModal() {
+    this.ui.hideModal();
   }
 }

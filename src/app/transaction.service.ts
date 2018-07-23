@@ -1,7 +1,7 @@
 import { Income } from './models/income';
 import { Cost } from './models/cost';
 import { Transfer } from './models/models';
-import { Injectable } from '../../node_modules/@angular/core';
+import { Injectable } from '@angular/core';
 import { Account } from './models/account';
 import { IncomeCategory } from './models/incomeCategory';
 

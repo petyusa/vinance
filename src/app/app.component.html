@@ -2,8 +2,31 @@
 <div class="container">
   <app-sidenav [ngClass]="{sidenav: true, open: isSidenavOpen}"></app-sidenav>
   <main class="content">
-    <app-new-income></app-new-income>
-    <app-new-cost></app-new-cost>
-    <app-new-transfer></app-new-transfer>
+    <button class="btn btn--primary btn--rounded"
+            (click)="initLoginModal()">
+      <i class="material-icons">
+        menu
+      </i>
+      Add Income
+    </button>
+    <button class="btn btn--primary btn--rounded"
+            (click)="initLoginModal()">
+      <i class="material-icons">
+        attach_money
+      </i>
+      Add Cost
+    </button>
+    <button class="btn btn--primary btn--rounded"
+            (click)="initLoginModal()">
+      <i class="material-icons">
+        swap_vert
+      </i>
+      Add Transfer
+    </button>
   </main>
 </div>
+<div id="modal-container"
+     class="hidden"></div>
+<div id="overlay"
+     (click)="removeModal()"
+     class="hidden"></div>

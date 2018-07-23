@@ -1,11 +1,12 @@
 .btn {
-  margin-top: 1rem;
   padding: 1rem;
   border: none;
+  margin-right: 1rem;
 
   &--primary {
     color: #fff;
     background-color: $color-button-primary;
+    border-radius: 4px;
 
     &:hover,
     &:active {
@@ -15,5 +16,9 @@
 
   &--full {
     width: 100%;
+  }
+
+  .material-icons {
+    vertical-align: middle;
   }
 }

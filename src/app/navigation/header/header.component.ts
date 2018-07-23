@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
-import { UIService } from '../../ui.service';
+import { UIService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-header',
