@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Cost } from '../../models/models';
+import { Cost } from '../../../models/models';
 
 @Component({
   selector: 'app-new-cost',

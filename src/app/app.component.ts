@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UIService } from './services/ui.service';
-import { NewIncomeComponent } from './transactions/new-income/new-income.component';
+import { NewIncomeComponent } from './transactions/incomes/new-income/new-income.component';
 
 @Component({
   selector: 'app-root',

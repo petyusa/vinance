@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Income } from '../../models/income';
+import { Income } from '../../../models/income';
 
 @Component({
   selector: 'app-new-income',
