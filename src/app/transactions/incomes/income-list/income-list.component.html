@@ -1,10 +1,17 @@
 <ul class="income-container">
-  <li class="income"
-      *ngFor="let income of incomes"
-      style="color: white">
+  <li class="income__row income__row--header">
+    <span>Date</span>
+    <span>Account</span>
+    <span>Amount</span>
+    <span>Category</span>
+    <span>Comment</span>
+    <span></span>
+  </li>
+  <li class="income__row income__row--item"
+      *ngFor="let income of incomes">
     <span>{{ income.date | date }}</span>
     <span>{{ income.to.name }}</span>
-    <span>{{ income.amount }}</span>
+    <span>{{ income.amount | forint }}</span>
     <span>{{ income.category.name }}</span>
     <span>{{ income.comment }}</span>
     <span>

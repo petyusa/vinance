@@ -8,11 +8,11 @@ import { IncomeCategory } from './models/incomeCategory';
 @Injectable()
 export class TransactionService {
   private incomes: Income[] = [
-    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
-    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
-    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
-    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
-    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 2340, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 5547, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 154474, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 22103, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 1881, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
     new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
     new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
     new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),

@@ -17,6 +17,7 @@ import { UIService } from './services/ui.service';
 import { TransactionService } from './transaction.service';
 import { IncomeDetailComponent } from './transactions/incomes/income-detail/income-detail.component';
 import { IncomeListComponent } from './transactions/incomes/income-list/income-list.component';
+import { ForintPipe } from './pipes/forint.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { IncomeListComponent } from './transactions/incomes/income-list/income-l
     NewCostComponent,
     NewTransferComponent,
     IncomeDetailComponent,
-    IncomeListComponent
+    IncomeListComponent,
+    ForintPipe
   ],
   imports: [
     AppRoutingModule,
