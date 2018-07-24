@@ -1,3 +1,15 @@
-<p>
-  income-list works!
-</p>
+<ul class="income-container">
+  <li class="income"
+      *ngFor="let income of incomes"
+      style="color: white">
+    <span>{{ income.date | date }}</span>
+    <span>{{ income.to.name }}</span>
+    <span>{{ income.amount }}</span>
+    <span>{{ income.category.name }}</span>
+    <span>{{ income.comment }}</span>
+    <span>
+      <i class="material-icons">delete</i>
+      <i class="material-icons">edit</i>
+    </span>
+  </li>
+</ul>

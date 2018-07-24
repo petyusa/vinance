@@ -9,6 +9,14 @@ import { IncomeCategory } from './models/incomeCategory';
 export class TransactionService {
   private incomes: Income[] = [
     new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
+    new Income(new Date(), 111, 'heyho', new Account('helo'), new IncomeCategory('Cat 1')),
     new Income(new Date(), 222, 'blabla', new Account('bla'), new IncomeCategory('Cat 2'))
   ];
   private costs: Cost[] = [];

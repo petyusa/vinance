@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Income } from '../../../models/models';
+import { TransactionService } from '../../../transaction.service';
 
 @Component({
   selector: 'app-income-list',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./income-list.component.scss']
 })
 export class IncomeListComponent implements OnInit {
+  incomes: Income[] = [];
 
-  constructor() { }
+  constructor(private ts: TransactionService) {}
 
   ngOnInit() {
+    this.incomes = this.ts.getIncomes();
   }
-
 }
