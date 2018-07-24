@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Cost } from '../../../models/models';
+import { TransactionService } from '../../../transaction.service';
+import { UIService } from '../../../services/ui.service';
 
 @Component({
   selector: 'app-new-cost',
@@ -9,7 +11,7 @@ import { Cost } from '../../../models/models';
 })
 export class NewCostComponent implements OnInit {
   costForm: FormGroup;
-  constructor() {}
+  constructor(private ts: TransactionService, private ui: UIService) {}
 
   ngOnInit() {
     this.costForm = new FormGroup({
@@ -21,7 +23,7 @@ export class NewCostComponent implements OnInit {
     });
   }
 
-  onAddIncome() {
+  onAddCost() {
     const values = this.costForm.value;
     const cost = new Cost(
       values.date,
@@ -30,6 +32,11 @@ export class NewCostComponent implements OnInit {
       values.accountFrom,
       values.category
     );
-    console.log(this.costForm);
+    this.ts.addCost(cost);
+    this.closeModal();
+  }
+
+  private closeModal() {
+    this.ui.hideModal();
   }
 }

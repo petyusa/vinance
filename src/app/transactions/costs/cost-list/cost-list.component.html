@@ -8,12 +8,12 @@
     <span class="transaction-btns"></span>
   </li>
   <li class="transaction__row transaction__row--income"
-      *ngFor="let income of incomes">
-    <span class="transaction-date">{{ income.date | date }}</span>
-    <span class="transaction-acc">{{ income.to.name }}</span>
-    <span class="transaction-amount">{{ income.amount | forint }}</span>
-    <span class="transaction-cat">{{ income.category.name }}</span>
-    <span class="transaction-comm">{{ income.comment }}</span>
+      *ngFor="let cost of costs">
+    <span class="transaction-date">{{ cost.date | date }}</span>
+    <span class="transaction-acc">{{ cost.from.name }}</span>
+    <span class="transaction-amount">{{ cost.amount | forint }}</span>
+    <span class="transaction-cat">{{ cost.category.name }}</span>
+    <span class="transaction-comm">{{ cost.comment }}</span>
     <span class="transaction-btns">
       <i class="material-icons">delete</i>
       <i class="material-icons">edit</i>

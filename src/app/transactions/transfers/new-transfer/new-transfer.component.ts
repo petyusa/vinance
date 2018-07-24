@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Transfer } from '../../../models/models';
+import { TransferCategory } from '../../../models/transferCategory';
+import { TransactionService } from '../../../transaction.service';
+import { UIService } from '../../../services/ui.service';
 
 @Component({
   selector: 'app-new-transfer',
@@ -9,7 +12,8 @@ import { Transfer } from '../../../models/models';
 })
 export class NewTransferComponent implements OnInit {
   transferForm: FormGroup;
-  constructor() {}
+
+  constructor(private ts: TransactionService, private ui: UIService) {}
 
   ngOnInit() {
     this.transferForm = new FormGroup({
@@ -29,8 +33,14 @@ export class NewTransferComponent implements OnInit {
       values.amount,
       values.comment,
       values.accountFrom,
-      values.accountTo
+      values.accountTo,
+      new TransferCategory('fd')
     );
-    console.log(this.transferForm);
+    this.ts.addTransfer(transfer);
+    this.closeModal();
+  }
+
+  private closeModal() {
+    this.ui.hideModal();
   }
 }

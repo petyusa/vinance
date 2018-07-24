@@ -7,6 +7,15 @@
 @import 'styles/components/button';
 @import 'styles/components/form';
 @import 'styles/components/header';
-@import 'styles/components/income';
 @import 'styles/components/modal';
 @import 'styles/components/sidenav';
+@import 'styles/components/transaction';
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}

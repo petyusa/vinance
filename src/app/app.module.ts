@@ -15,9 +15,10 @@ import { NewTransferComponent } from './transactions/transfers/new-transfer/new-
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { UIService } from './services/ui.service';
 import { TransactionService } from './transaction.service';
-import { IncomeDetailComponent } from './transactions/incomes/income-detail/income-detail.component';
 import { IncomeListComponent } from './transactions/incomes/income-list/income-list.component';
 import { ForintPipe } from './pipes/forint.pipe';
+import { CostListComponent } from './transactions/costs/cost-list/cost-list.component';
+import { TransferListComponent } from './transactions/transfers/transfer-list/transfer-list.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import { ForintPipe } from './pipes/forint.pipe';
     NewIncomeComponent,
     NewCostComponent,
     NewTransferComponent,
-    IncomeDetailComponent,
     IncomeListComponent,
-    ForintPipe
+    ForintPipe,
+    CostListComponent,
+    TransferListComponent
   ],
   imports: [
     AppRoutingModule,

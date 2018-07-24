@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Income } from '../../../models/income';
 import { TransactionService } from '../../../transaction.service';
+import { UIService } from '../../../services/ui.service';
 
 @Component({
   selector: 'app-new-income',
@@ -10,11 +11,11 @@ import { TransactionService } from '../../../transaction.service';
 })
 export class NewIncomeComponent implements OnInit {
   incomeForm: FormGroup;
-  constructor(private ts: TransactionService) {}
+  constructor(private ts: TransactionService, private ui: UIService) {}
 
   ngOnInit() {
     this.incomeForm = new FormGroup({
-      date: new FormControl('', [Validators.required]),
+      date: new FormControl(new Date().toISOString().substring(0, 10), [Validators.required]),
       accountTo: new FormControl('', Validators.required),
       amount: new FormControl('', [Validators.required, Validators.min(1)]),
       category: new FormControl('', Validators.required),
@@ -32,5 +33,10 @@ export class NewIncomeComponent implements OnInit {
       values.category
     );
     this.ts.addIncome(income);
+    this.closeModal();
+  }
+
+  private closeModal() {
+    this.ui.hideModal();
   }
 }

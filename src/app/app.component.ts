@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 
 import { UIService } from './services/ui.service';
 import { NewIncomeComponent } from './transactions/incomes/new-income/new-income.component';
+import { NewCostComponent } from './transactions/costs/new-cost/new-cost.component';
+import { NewTransferComponent } from './transactions/transfers/new-transfer/new-transfer.component';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +23,16 @@ export class AppComponent implements OnInit {
     });
   }
 
-  initLoginModal() {
-    const inputs = {
-      isMobile: false
-    };
-    this.ui.showModal(NewIncomeComponent, inputs, {});
+  initIncomeModal() {
+    this.ui.showModal(NewIncomeComponent, {}, {});
+  }
+
+  initCostModal() {
+    this.ui.showModal(NewCostComponent, {}, {});
+  }
+
+  initTransferModal() {
+    this.ui.showModal(NewTransferComponent, {}, {});
   }
 
   removeModal() {
