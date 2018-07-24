@@ -3,6 +3,10 @@
   border: none;
   margin-right: 1rem;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &--primary {
     color: #fff;
     background-color: $color-button-primary;
