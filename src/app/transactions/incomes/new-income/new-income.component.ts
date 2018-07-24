@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Income } from '../../../models/income';
+import { TransactionService } from '../../../transaction.service';
 
 @Component({
   selector: 'app-new-income',
@@ -9,7 +10,7 @@ import { Income } from '../../../models/income';
 })
 export class NewIncomeComponent implements OnInit {
   incomeForm: FormGroup;
-  constructor() {}
+  constructor(private ts: TransactionService) {}
 
   ngOnInit() {
     this.incomeForm = new FormGroup({
@@ -30,6 +31,6 @@ export class NewIncomeComponent implements OnInit {
       values.accountTo,
       values.category
     );
-    console.log(this.incomeForm);
+    this.ts.addIncome(income);
   }
 }
