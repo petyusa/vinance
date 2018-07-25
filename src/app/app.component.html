@@ -3,21 +3,21 @@
   <app-sidenav [ngClass]="{sidenav: true, open: isSidenavOpen}"></app-sidenav>
   <main class="content">
     <button class="btn btn--primary btn--rounded"
-            (click)="initIncomeModal()">
+            (click)="initModal('Income')">
       <i class="material-icons">
         account_balance
       </i>
       Add Income
     </button>
     <button class="btn btn--primary btn--rounded"
-            (click)="initCostModal()">
+            (click)="initModal('Cost')">
       <i class="material-icons">
         attach_money
       </i>
       Add Cost
     </button>
     <button class="btn btn--primary btn--rounded"
-            (click)="initTransferModal()">
+            (click)="initModal('Transfer')">
       <i class="material-icons">
         swap_vert
       </i>

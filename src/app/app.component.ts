@@ -23,16 +23,20 @@ export class AppComponent implements OnInit {
     });
   }
 
-  initIncomeModal() {
-    this.ui.showModal(NewIncomeComponent, {}, {});
-  }
-
-  initCostModal() {
-    this.ui.showModal(NewCostComponent, {}, {});
-  }
-
-  initTransferModal() {
-    this.ui.showModal(NewTransferComponent, {}, {});
+  initModal(componentType: string) {
+    switch (componentType) {
+      case 'Income':
+        this.ui.showModal(NewIncomeComponent, {}, {});
+        break;
+      case 'Cost':
+        this.ui.showModal(NewCostComponent, {}, {});
+        break;
+      case 'Transfer':
+        this.ui.showModal(NewTransferComponent, {}, {});
+        break;
+      default:
+        break;
+    }
   }
 
   removeModal() {
