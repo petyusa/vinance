@@ -25,6 +25,18 @@ export class TransactionService {
     this.incomesChanged.next([...this.incomes]);
   }
 
+  getIncomes(): Income[] {
+    return [...this.incomes];
+  }
+
+  deleteIncome(id: string) {
+    this.incomes.forEach((income, index, arr) => {
+      if (income.id === id) {
+        arr.splice(index, 1);
+      }
+    });
+  }
+
   addCost(costToAdd: Cost) {
     this.costs.push(costToAdd);
     this.costsChanged.next([...this.costs]);
@@ -33,10 +45,6 @@ export class TransactionService {
   addTransfer(transferToAdd: Transfer) {
     this.transfers.push(transferToAdd);
     this.transfersChanged.next([...this.transfers]);
-  }
-
-  getIncomes(): Income[] {
-    return [...this.incomes];
   }
 
   getCosts() {

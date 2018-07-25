@@ -4,6 +4,7 @@ import { TransferCategory } from './transferCategory';
 
 export class Transfer extends Transaction {
   constructor(
+    id: string,
     date: Date,
     amount: number,
     comment: string,
@@ -11,7 +12,7 @@ export class Transfer extends Transaction {
     to: Account,
     category: TransferCategory
   ) {
-    super(date, amount, comment);
+    super(id, date, amount, comment);
     this.from = from;
     this.to = to;
     this.category = category;
