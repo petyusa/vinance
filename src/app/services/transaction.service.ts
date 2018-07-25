@@ -1,9 +1,9 @@
-import { Income } from './models/income';
-import { Cost } from './models/cost';
-import { Transfer } from './models/models';
+import { Income } from '../models/income';
+import { Cost } from '../models/cost';
+import { Transfer } from '../models/models';
 import { Injectable } from '@angular/core';
-import { Subject } from '../../node_modules/rxjs';
-import { testData } from './models/testdata';
+import { Subject } from 'rxjs';
+import { testData } from '../models/testdata';
 
 @Injectable()
 export class TransactionService {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Transfer } from '../../../models/models';
 import { Subscription } from 'rxjs';
-import { TransactionService } from '../../../transaction.service';
+import { TransactionService } from '../../../services/transaction.service';
 
 @Component({
   selector: 'app-transfer-list',

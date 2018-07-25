@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Income } from '../../../models/models';
-import { TransactionService } from '../../../transaction.service';
-import { Subscription } from '../../../../../node_modules/rxjs';
+import { TransactionService } from '../../../services/transaction.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-income-list',

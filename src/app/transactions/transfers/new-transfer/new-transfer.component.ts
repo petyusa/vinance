@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Transfer } from '../../../models/models';
 import { TransferCategory } from '../../../models/transferCategory';
-import { TransactionService } from '../../../transaction.service';
+import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
 
 @Component({

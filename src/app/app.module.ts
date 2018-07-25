@@ -14,7 +14,7 @@ import { NewIncomeComponent } from './transactions/incomes/new-income/new-income
 import { NewTransferComponent } from './transactions/transfers/new-transfer/new-transfer.component';
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { UIService } from './services/ui.service';
-import { TransactionService } from './transaction.service';
+import { TransactionService } from './services/transaction.service';
 import { IncomeListComponent } from './transactions/incomes/income-list/income-list.component';
 import { ForintPipe } from './pipes/forint.pipe';
 import { CostListComponent } from './transactions/costs/cost-list/cost-list.component';

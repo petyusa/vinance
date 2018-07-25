@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cost } from '../../../models/cost';
 import { Subscription } from 'rxjs';
-import { TransactionService } from '../../../transaction.service';
+import { TransactionService } from '../../../services/transaction.service';
 
 @Component({
   selector: 'app-cost-list',

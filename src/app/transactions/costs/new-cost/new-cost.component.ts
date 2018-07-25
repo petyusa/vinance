@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Cost } from '../../../models/models';
-import { TransactionService } from '../../../transaction.service';
+import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
 
 @Component({
