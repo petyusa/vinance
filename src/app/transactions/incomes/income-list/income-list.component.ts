@@ -20,4 +20,8 @@ export class IncomeListComponent implements OnInit {
       this.incomes = incomes;
     });
   }
+
+  onDeleteIncome(id: string) {
+    this.ts.deleteIncome(id);
+  }
 }

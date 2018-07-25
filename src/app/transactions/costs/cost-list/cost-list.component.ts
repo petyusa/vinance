@@ -20,4 +20,8 @@ export class CostListComponent implements OnInit {
       this.costs = costs;
     });
   }
+
+  onDeleteCost(id: string) {
+    this.ts.deleteCost(id);
+  }
 }

@@ -20,4 +20,8 @@ export class TransferListComponent implements OnInit {
       this.transfers = transfers;
     });
   }
+
+  onDeleteTransfer(id: string) {
+    this.ts.deleteTransfer(id);
+  }
 }

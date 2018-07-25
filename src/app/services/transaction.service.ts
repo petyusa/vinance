@@ -35,10 +35,24 @@ export class TransactionService {
         arr.splice(index, 1);
       }
     });
+    this.incomesChanged.next([...this.incomes]);
   }
 
   addCost(costToAdd: Cost) {
     this.costs.push(costToAdd);
+    this.costsChanged.next([...this.costs]);
+  }
+
+  getCosts() {
+    return [...this.costs];
+  }
+
+  deleteCost(id: string) {
+    this.costs.forEach((cost, index, arr) => {
+      if (cost.id === id) {
+        arr.splice(index, 1);
+      }
+    });
     this.costsChanged.next([...this.costs]);
   }
 
@@ -47,11 +61,16 @@ export class TransactionService {
     this.transfersChanged.next([...this.transfers]);
   }
 
-  getCosts() {
-    return [...this.costs];
-  }
-
   getTransfers() {
     return [...this.transfers];
+  }
+
+  deleteTransfer(id: string) {
+    this.transfers.forEach((transfer, index, arr) => {
+      if (transfer.id === id) {
+        arr.splice(index, 1);
+      }
+    });
+    this.transfersChanged.next([...this.transfers]);
   }
 }
