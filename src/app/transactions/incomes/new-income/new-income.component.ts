@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Income } from '../../../models/income';
 import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
+import { Account } from '../../../models/account';
+import { IncomeCategory } from '../../../models/incomeCategory';
 
 @Component({
   selector: 'app-new-income',
@@ -25,23 +27,36 @@ export class NewIncomeComponent implements OnInit {
       comment: new FormControl('')
     });
     if (this.id !== '') {
-      const incomeToEdit = this.ts.getIncome(this.id);
-      this.incomeForm.setValue(incomeToEdit);
+      const incomeToEdit: Income = this.ts.getIncome(this.id);
+      this.incomeForm.setValue({
+        id: incomeToEdit.id,
+        date: incomeToEdit.date.toISOString().substring(0, 10),
+        to: incomeToEdit.to.name,
+        amount: incomeToEdit.amount,
+        category: incomeToEdit.category.name,
+        comment: incomeToEdit.comment
+      });
+      console.log(this.id);
     }
-    console.log(this.id);
   }
 
-  onAddIncome() {
+  onSubmitIncome() {
+    console.log(this.id);
     const values = this.incomeForm.value;
+    console.log(values.id);
     const income = new Income(
-      '999',
-      values.date,
+      values.id,
+      new Date(values.date),
       values.amount,
       values.comment,
-      values.accountTo,
-      values.category
+      new Account(values.to),
+      new IncomeCategory(values.category)
     );
-    this.ts.addIncome(income);
+    if (this.id !== '') {
+      this.ts.editIncome(income);
+    } else {
+      this.ts.addIncome(income);
+    }
     this.closeModal();
   }
 
