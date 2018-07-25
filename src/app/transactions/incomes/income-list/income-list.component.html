@@ -1,22 +1,26 @@
-<ul class="transaction-container">
-  <li class="transaction__row transaction__row--header">
-    <span class="transaction-date">Date</span>
-    <span class="transaction-acc">Account</span>
-    <span class="transaction-amount">Amount</span>
-    <span class="transaction-cat">Category</span>
-    <span class="transaction-comm">Comment</span>
-    <span class="transaction-btns"></span>
-  </li>
-  <li class="transaction__row transaction__row--income"
-      *ngFor="let income of incomes">
-    <span class="transaction-date">{{ income.date | date }}</span>
-    <span class="transaction-acc">{{ income.to.name }}</span>
-    <span class="transaction-amount">{{ income.amount | forint }}</span>
-    <span class="transaction-cat">{{ income.category.name }}</span>
-    <span class="transaction-comm">{{ income.comment }}</span>
-    <span class="transaction-btns">
-      <i class="material-icons">delete</i>
-      <i class="material-icons">edit</i>
-    </span>
-  </li>
-</ul>
+<table class="table">
+  <thead class="table__head">
+    <tr class="table__row">
+      <td>Date</td>
+      <td>To</td>
+      <td>Amount</td>
+      <td>Category</td>
+      <td>Comment</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let income of incomes"
+        class="table__row">
+      <td>{{ income.date | date }}</td>
+      <td>{{ income.to.name }}</td>
+      <td class="text-right">{{ income.amount | forint }}</td>
+      <td>{{ income.category.name }}</td>
+      <td>{{ income.comment }}</td>
+      <td>
+        <i class="material-icons">delete</i>
+        <i class="material-icons">edit</i>
+      </td>
+    </tr>
+  </tbody>
+</table>

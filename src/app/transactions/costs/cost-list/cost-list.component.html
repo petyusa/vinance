@@ -1,22 +1,26 @@
-<ul class="transaction-container">
-  <li class="transaction__row transaction__row--header">
-    <span class="transaction-date">Date</span>
-    <span class="transaction-acc">Account</span>
-    <span class="transaction-amount">Amount</span>
-    <span class="transaction-cat">Category</span>
-    <span class="transaction-comm">Comment</span>
-    <span class="transaction-btns"></span>
-  </li>
-  <li class="transaction__row transaction__row--income"
-      *ngFor="let cost of costs">
-    <span class="transaction-date">{{ cost.date | date }}</span>
-    <span class="transaction-acc">{{ cost.from.name }}</span>
-    <span class="transaction-amount">{{ cost.amount | forint }}</span>
-    <span class="transaction-cat">{{ cost.category.name }}</span>
-    <span class="transaction-comm">{{ cost.comment }}</span>
-    <span class="transaction-btns">
-      <i class="material-icons">delete</i>
-      <i class="material-icons">edit</i>
-    </span>
-  </li>
-</ul>
+<table class="table">
+  <thead class="table__head">
+    <tr class="table__row">
+      <td>Date</td>
+      <td>From</td>
+      <td>Amount</td>
+      <td>Category</td>
+      <td>Comment</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cost of costs"
+        class="table__row">
+      <td>{{ cost.date | date }}</td>
+      <td>{{ cost.from.name }}</td>
+      <td class="text-right">{{ cost.amount | forint }}</td>
+      <td>{{ cost.category.name }}</td>
+      <td>{{ cost.comment }}</td>
+      <td>
+        <i class="material-icons">delete</i>
+        <i class="material-icons">edit</i>
+      </td>
+    </tr>
+  </tbody>
+</table>

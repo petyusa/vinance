@@ -1,24 +1,28 @@
-<ul class="transaction-container">
-  <li class="transaction__row transaction__row--header">
-    <span class="transaction-date">Date</span>
-    <span class="transaction-acc">From</span>
-    <span class="transaction-acc">To</span>
-    <span class="transaction-amount">Amount</span>
-    <span class="transaction-cat">Category</span>
-    <span class="transaction-comm">Comment</span>
-    <span class="transaction-btns"></span>
-  </li>
-  <li class="transaction__row transaction__row--income"
-      *ngFor="let transfer of transfers">
-    <span class="transaction-date">{{ transfer.date | date }}</span>
-    <span class="transaction-acc">{{ transfer.from.name }}</span>
-    <span class="transaction-acc">{{ transfer.to.name }}</span>
-    <span class="transaction-amount">{{ transfer.amount | forint }}</span>
-    <span class="transaction-cat">{{ transfer.category.name }}</span>
-    <span class="transaction-comm">{{ transfer.comment }}</span>
-    <span class="transaction-btns">
-      <i class="material-icons">delete</i>
-      <i class="material-icons">edit</i>
-    </span>
-  </li>
-</ul>
+<table class="table">
+  <thead class="table__head">
+    <tr class="table__row">
+      <td>Date</td>
+      <td>From</td>
+      <td>To</td>
+      <td>Amount</td>
+      <td>Category</td>
+      <td>Comment</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transfer of transfers"
+        class="table__row">
+      <td>{{ transfer.date | date }}</td>
+      <td>{{ transfer.to.name }}</td>
+      <td>{{ transfer.from.name }}</td>
+      <td class="text-right">{{ transfer.amount | forint }}</td>
+      <td>{{ transfer.category.name }}</td>
+      <td>{{ transfer.comment }}</td>
+      <td>
+        <i class="material-icons">delete</i>
+        <i class="material-icons">edit</i>
+      </td>
+    </tr>
+  </tbody>
+</table>

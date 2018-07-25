@@ -1,0 +1,29 @@
+.table {
+  margin: 1rem;
+  color: $color-font-secondary;
+  font-size: 1.6rem;
+  background-color: $color-background-4;
+
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid $color-font-tertiary;
+  border-radius: 4px;
+  overflow: hidden;
+
+  &__row {
+    td {
+      border-top: 1px solid $color-font-tertiary;
+      padding: 0 1rem;
+    }
+  }
+
+  &__head {
+    height: 3.2rem;
+    background-color: $color-background-primary;
+
+    td {
+      border-top: 0;
+      padding: 0 1rem;
+    }
+  }
+}
