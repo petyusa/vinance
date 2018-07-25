@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  background-color: $color-background-primary;
+  background-color: $color-background-1;
   position: fixed;
   top: 0;
   left: 0;
@@ -22,11 +22,11 @@
     transition: all 0.5s;
 
     &:hover {
-      background-color: lighten($color: $color-background-primary, $amount: 5%);
+      background-color: lighten($color: $color-background-1, $amount: 5%);
     }
 
     &.active {
-      background-color: lighten($color: $color-background-primary, $amount: 5%);
+      background-color: lighten($color: $color-background-1, $amount: 5%);
     }
   }
 }

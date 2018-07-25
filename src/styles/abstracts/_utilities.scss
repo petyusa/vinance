@@ -16,3 +16,17 @@
 .material-icons {
   line-height: 1.6;
 }
+
+.clickable-danger {
+  &:hover {
+    color: $color-danger;
+    cursor: pointer;
+  }
+}
+
+.clickable-warning {
+  &:hover {
+    color: $color-warning;
+    cursor: pointer;
+  }
+}
