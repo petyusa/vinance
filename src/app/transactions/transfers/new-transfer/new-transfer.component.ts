@@ -16,8 +16,9 @@ export class NewTransferComponent implements OnInit {
   constructor(private ts: TransactionService, private ui: UIService) {}
 
   ngOnInit() {
+    const today = new Date().toISOString().substring(0, 10);
     this.transferForm = new FormGroup({
-      date: new FormControl('', [Validators.required]),
+      date: new FormControl(today, [Validators.required]),
       amount: new FormControl('', [Validators.required, Validators.min(1)]),
       comment: new FormControl(''),
       accountTo: new FormControl('', Validators.required),
@@ -29,6 +30,7 @@ export class NewTransferComponent implements OnInit {
   onAddTransfer() {
     const values = this.transferForm.value;
     const transfer = new Transfer(
+      '999',
       values.date,
       values.amount,
       values.comment,

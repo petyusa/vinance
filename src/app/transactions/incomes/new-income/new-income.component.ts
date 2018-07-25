@@ -14,8 +14,9 @@ export class NewIncomeComponent implements OnInit {
   constructor(private ts: TransactionService, private ui: UIService) {}
 
   ngOnInit() {
+    const today = new Date().toISOString().substring(0, 10);
     this.incomeForm = new FormGroup({
-      date: new FormControl(new Date().toISOString().substring(0, 10), [Validators.required]),
+      date: new FormControl(today, [Validators.required]),
       accountTo: new FormControl('', Validators.required),
       amount: new FormControl('', [Validators.required, Validators.min(1)]),
       category: new FormControl('', Validators.required),
@@ -26,6 +27,7 @@ export class NewIncomeComponent implements OnInit {
   onAddIncome() {
     const values = this.incomeForm.value;
     const income = new Income(
+      '999',
       values.date,
       values.amount,
       values.comment,

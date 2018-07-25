@@ -1,0 +1,13 @@
+input[type='date'] {
+  outline: none;
+}
+input[type='date']::-webkit-clear-button {
+  display: none;
+}
+input[type='date']::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  font-size: 15px;
+}

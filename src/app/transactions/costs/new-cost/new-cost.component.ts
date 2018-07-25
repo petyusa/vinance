@@ -14,8 +14,9 @@ export class NewCostComponent implements OnInit {
   constructor(private ts: TransactionService, private ui: UIService) {}
 
   ngOnInit() {
+    const today = new Date().toISOString().substring(0, 10);
     this.costForm = new FormGroup({
-      date: new FormControl('', [Validators.required]),
+      date: new FormControl(today, [Validators.required]),
       accountFrom: new FormControl('', Validators.required),
       amount: new FormControl('', [Validators.required, Validators.min(1)]),
       category: new FormControl('', Validators.required),
@@ -26,6 +27,7 @@ export class NewCostComponent implements OnInit {
   onAddCost() {
     const values = this.costForm.value;
     const cost = new Cost(
+      '999',
       values.date,
       values.amount,
       values.comment,
