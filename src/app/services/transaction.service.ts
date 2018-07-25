@@ -25,6 +25,16 @@ export class TransactionService {
     this.incomesChanged.next([...this.incomes]);
   }
 
+  getIncome(id: string) {
+    let found = null;
+    this.incomes.forEach((income) => {
+      if (income.id === id) {
+        found = income;
+      }
+    });
+    return found;
+  }
+
   getIncomes(): Income[] {
     return [...this.incomes];
   }
