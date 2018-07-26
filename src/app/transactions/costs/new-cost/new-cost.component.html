@@ -1,9 +1,13 @@
 <div class="form-container">
-  <h2 class="form-container__header">Cost</h2>
+  <h2 class="form-container__header">{{ id === '' ? 'Add cost' : 'Edit cost'}}</h2>
   <hr>
   <form [formGroup]="costForm"
-        (ngSubmit)="onAddCost()">
+        (ngSubmit)="onSubmit()">
     <div class="form">
+      <input type="text"
+             class="hidden"
+             id="income-id"
+             formControlName="id">
       <label for="cost-date"
              class="form__label">Date</label>
       <input type="date"
@@ -15,7 +19,7 @@
       <input type="text"
              class="form__input"
              id="cost-to"
-             formControlName="accountFrom">
+             formControlName="from">
       <label for="cost-amount"
              class="form__label">Amount</label>
       <input type="number"
@@ -36,6 +40,6 @@
              formControlName="comment">
     </div>
     <button type="submit"
-            class="btn btn--primary btn--full mar-top-10">Add cost</button>
+            class="btn btn--primary btn--full mar-top-10">Submit</button>
   </form>
 </div>

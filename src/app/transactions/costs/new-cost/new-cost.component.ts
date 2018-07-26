@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { Cost } from '../../../models/models';
-import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
+import { CostService } from '../../../services/cost.service';
 
 @Component({
   selector: 'app-new-cost',
@@ -10,35 +11,53 @@ import { UIService } from '../../../services/ui.service';
   styleUrls: ['./new-cost.component.scss']
 })
 export class NewCostComponent implements OnInit {
+  @Input() id = '';
   costForm: FormGroup;
-  constructor(private ts: TransactionService, private ui: UIService) {}
+  constructor(private cs: CostService, private ui: UIService) {}
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  onSubmit() {
+    const values = this.costForm.value;
+    const cost = new Cost(
+      values.id,
+      new Date(values.date),
+      values.amount,
+      values.comment,
+      values.from,
+      values.category
+    );
+    if (this.id !== '') {
+      this.cs.editCost(cost);
+    } else {
+      this.cs.addCost(cost);
+    }
+    this.ui.hideModal();
+  }
+
+  private initForm() {
     const today = new Date().toISOString().substring(0, 10);
     this.costForm = new FormGroup({
+      id: new FormControl(''),
       date: new FormControl(today, [Validators.required]),
-      accountFrom: new FormControl('', Validators.required),
+      from: new FormControl('', Validators.required),
       amount: new FormControl('', [Validators.required, Validators.min(1)]),
       category: new FormControl('', Validators.required),
       comment: new FormControl('')
     });
-  }
-
-  onAddCost() {
-    const values = this.costForm.value;
-    const cost = new Cost(
-      '999',
-      values.date,
-      values.amount,
-      values.comment,
-      values.accountFrom,
-      values.category
-    );
-    this.ts.addCost(cost);
-    this.closeModal();
-  }
-
-  private closeModal() {
-    this.ui.hideModal();
+    if (this.id !== '') {
+      this.cs.getCost(this.id).subscribe((cost) => {
+        this.costForm.setValue({
+          id: cost.id,
+          date: new Date(cost.date.toDate()).toISOString().substring(0, 10),
+          from: cost.from,
+          amount: cost.amount,
+          category: cost.category,
+          comment: cost.comment
+        });
+      });
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Income } from '../../../models/models';
-import { Observable } from 'rxjs';
 import { IncomeService } from '../../../services/income.service';
 import { UIService } from '../../../services/ui.service';
 import { NewIncomeComponent } from '../new-income/new-income.component';

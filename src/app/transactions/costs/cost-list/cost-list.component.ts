@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Cost } from '../../../models/cost';
-import { Subscription } from 'rxjs';
-import { TransactionService } from '../../../services/transaction.service';
+import { CostService } from '../../../services/cost.service';
+import { UIService } from '../../../services/ui.service';
+import { NewCostComponent } from '../new-cost/new-cost.component';
 
 @Component({
   selector: 'app-cost-list',
@@ -9,19 +11,21 @@ import { TransactionService } from '../../../services/transaction.service';
   styleUrls: ['./cost-list.component.scss']
 })
 export class CostListComponent implements OnInit {
-  costs: Cost[] = [];
-  costsChanged: Subscription;
+  costs: Cost[];
 
-  constructor(private ts: TransactionService) {}
+  constructor(private cs: CostService, private ui: UIService) {}
 
   ngOnInit() {
-    this.costs = this.ts.getCosts();
-    this.costsChanged = this.ts.costsChanged.subscribe((costs) => {
-      this.costs = costs;
+    this.cs.costs.subscribe((items) => {
+      this.costs = items;
     });
   }
 
-  onDeleteCost(id: string) {
-    this.ts.deleteCost(id);
+  onEdit(id: string) {
+    this.ui.showModal(NewCostComponent, { id }, {});
+  }
+
+  onDelete(id: string) {
+    this.cs.deleteCost(id);
   }
 }

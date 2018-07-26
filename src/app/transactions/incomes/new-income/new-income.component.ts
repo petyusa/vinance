@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { Income } from '../../../models/income';
-import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
-import { Account } from '../../../models/account';
-import { IncomeCategory } from '../../../models/incomeCategory';
 import { IncomeService } from '../../../services/income.service';
 
 @Component({
@@ -31,7 +29,6 @@ export class NewIncomeComponent implements OnInit {
       values.to,
       values.category
     );
-    console.log(income);
     if (this.id !== '') {
       this.is.editIncome(income);
     } else {

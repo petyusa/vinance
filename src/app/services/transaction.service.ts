@@ -3,7 +3,6 @@ import { Cost } from '../models/cost';
 import { Transfer } from '../models/models';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { testData } from '../models/testdata';
 
 @Injectable()
 export class TransactionService {
@@ -14,11 +13,7 @@ export class TransactionService {
   costsChanged = new Subject<Cost[]>();
   transfersChanged = new Subject<Transfer[]>();
 
-  constructor() {
-    this.incomes = testData.incomes;
-    this.costs = testData.costs;
-    this.transfers = testData.transfers;
-  }
+  constructor() {}
 
   addIncome(incomeToAdd: Income) {
     this.incomes.push(incomeToAdd);

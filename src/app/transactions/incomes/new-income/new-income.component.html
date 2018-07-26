@@ -3,11 +3,11 @@
   <hr>
   <form [formGroup]="incomeForm"
         (ngSubmit)="onSubmitIncome()">
-    <input type="text"
-           class="hidden"
-           id="income-id"
-           formControlName="id">
     <div class="form">
+      <input type="text"
+             class="hidden"
+             id="income-id"
+             formControlName="id">
       <label for="income-date"
              class="form__label">Date</label>
       <input type="date"
