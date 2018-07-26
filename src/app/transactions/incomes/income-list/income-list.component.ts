@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Income } from '../../../models/models';
 import { Observable } from 'rxjs';
 import { IncomeService } from '../../../services/income.service';
+import { UIService } from '../../../services/ui.service';
+import { NewIncomeComponent } from '../new-income/new-income.component';
 
 @Component({
   selector: 'app-income-list',
@@ -11,16 +13,19 @@ import { IncomeService } from '../../../services/income.service';
 export class IncomeListComponent implements OnInit {
   incomes: Income[];
 
-  constructor(private is: IncomeService) {}
+  constructor(private is: IncomeService, private ui: UIService) {}
 
   ngOnInit() {
-    this.is.items.subscribe((items) => {
+    this.is.incomes.subscribe((items) => {
       this.incomes = items;
-      console.log(this.incomes);
     });
   }
 
-  onEdit() {}
+  onEdit(id: string) {
+    this.ui.showModal(NewIncomeComponent, { id }, {});
+  }
 
-  onDelete() {}
+  onDelete(id: string) {
+    this.is.deleteIncome(id);
+  }
 }

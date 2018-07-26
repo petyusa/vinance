@@ -31,6 +31,7 @@ export class NewIncomeComponent implements OnInit {
       values.to,
       values.category
     );
+    console.log(income);
     if (this.id !== '') {
       this.is.editIncome(income);
     } else {
@@ -49,16 +50,18 @@ export class NewIncomeComponent implements OnInit {
       category: new FormControl('', Validators.required),
       comment: new FormControl('')
     });
-    // if (this.id !== '') {
-    //   const incomeToEdit: Income = this.is.getIncome(this.id);
-    //   this.incomeForm.setValue({
-    //     id: incomeToEdit.id,
-    //     date: incomeToEdit.date.toISOString().substring(0, 10),
-    //     to: incomeToEdit.to.name,
-    //     amount: incomeToEdit.amount,
-    //     category: incomeToEdit.category.name,
-    //     comment: incomeToEdit.comment
-    //   });
-    // }
+    if (this.id !== '') {
+      this.is.getIncome(this.id).subscribe((income) => {
+        console.log(income.date);
+        this.incomeForm.setValue({
+          id: income.id,
+          date: new Date(income.date.toDate()).toISOString().substring(0, 10),
+          to: income.to,
+          amount: income.amount,
+          category: income.category,
+          comment: income.comment
+        });
+      });
+    }
   }
 }

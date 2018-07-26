@@ -1,45 +1,52 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+
 import { Income } from '../models/models';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection
-} from '../../../node_modules/angularfire2/firestore';
-import { Observable } from '../../../node_modules/rxjs';
 
 @Injectable()
 export class IncomeService {
-  items: Observable<Income[]>;
+  incomeToEdit: Observable<Income>;
+  incomes: Observable<Income[]>;
   collection: AngularFirestoreCollection<Income>;
+  private collectionPath = 'income';
 
   constructor(private aft: AngularFirestore) {
     this.init();
   }
 
-  init() {
-    this.items = this.aft.collection<Income>('income').valueChanges();
-    console.log(this.items);
+  getIncome(id: string): Observable<Income> {
+    return this.aft
+      .collection(this.collectionPath)
+      .doc<Income>(id)
+      .valueChanges();
   }
 
-  addIncome(incomeToAdd: Income) {
+  addIncome(incomeToAdd: Income): void {
     incomeToAdd.id = this.aft.createId();
     this.aft
-      .collection<Income>('income')
+      .collection<Income>(this.collectionPath)
       .doc(incomeToAdd.id)
-      .set({
-        id: incomeToAdd.id,
-        date: incomeToAdd.date,
-        amount: incomeToAdd.amount,
-        to: incomeToAdd.to,
-        comment: incomeToAdd.comment,
-        category: incomeToAdd.category
-      });
+      .set({ ...incomeToAdd });
   }
 
-  getIncome(id: string) {}
+  editIncome(incomeToEdit: Income): void {
+    this.aft
+      .collection(this.collectionPath)
+      .doc<Income>(incomeToEdit.id)
+      .update({ ...incomeToEdit });
+  }
 
-  getIncomes() {}
+  deleteIncome(id: string): void {
+    this.aft
+      .collection(this.collectionPath)
+      .doc<Income>(id)
+      .delete();
+  }
 
-  editIncome(incomeToEdit: Income) {}
-
-  deleteIncome(id: string) {}
+  private init(): void {
+    this.incomes = this.aft
+      .collection<Income>(this.collectionPath, (ref) => ref.orderBy('date'))
+      .valueChanges();
+  }
 }
