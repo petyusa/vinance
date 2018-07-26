@@ -5,6 +5,7 @@ import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
 import { Account } from '../../../models/account';
 import { IncomeCategory } from '../../../models/incomeCategory';
+import { IncomeService } from '../../../services/income.service';
 
 @Component({
   selector: 'app-new-income',
@@ -14,9 +15,31 @@ import { IncomeCategory } from '../../../models/incomeCategory';
 export class NewIncomeComponent implements OnInit {
   @Input() id = '';
   incomeForm: FormGroup;
-  constructor(private ts: TransactionService, private ui: UIService) {}
+  constructor(private ui: UIService, private is: IncomeService) {}
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  onSubmitIncome() {
+    const values = this.incomeForm.value;
+    const income = new Income(
+      values.id,
+      new Date(values.date),
+      values.amount,
+      values.comment,
+      values.to,
+      values.category
+    );
+    if (this.id !== '') {
+      this.is.editIncome(income);
+    } else {
+      this.is.addIncome(income);
+    }
+    this.ui.hideModal();
+  }
+
+  private initForm() {
     const today = new Date().toISOString().substring(0, 10);
     this.incomeForm = new FormGroup({
       id: new FormControl(''),
@@ -26,41 +49,16 @@ export class NewIncomeComponent implements OnInit {
       category: new FormControl('', Validators.required),
       comment: new FormControl('')
     });
-    if (this.id !== '') {
-      const incomeToEdit: Income = this.ts.getIncome(this.id);
-      this.incomeForm.setValue({
-        id: incomeToEdit.id,
-        date: incomeToEdit.date.toISOString().substring(0, 10),
-        to: incomeToEdit.to.name,
-        amount: incomeToEdit.amount,
-        category: incomeToEdit.category.name,
-        comment: incomeToEdit.comment
-      });
-      console.log(this.id);
-    }
-  }
-
-  onSubmitIncome() {
-    console.log(this.id);
-    const values = this.incomeForm.value;
-    console.log(values.id);
-    const income = new Income(
-      values.id,
-      new Date(values.date),
-      values.amount,
-      values.comment,
-      new Account(values.to),
-      new IncomeCategory(values.category)
-    );
-    if (this.id !== '') {
-      this.ts.editIncome(income);
-    } else {
-      this.ts.addIncome(income);
-    }
-    this.closeModal();
-  }
-
-  private closeModal() {
-    this.ui.hideModal();
+    // if (this.id !== '') {
+    //   const incomeToEdit: Income = this.is.getIncome(this.id);
+    //   this.incomeForm.setValue({
+    //     id: incomeToEdit.id,
+    //     date: incomeToEdit.date.toISOString().substring(0, 10),
+    //     to: incomeToEdit.to.name,
+    //     amount: incomeToEdit.amount,
+    //     category: incomeToEdit.category.name,
+    //     comment: incomeToEdit.comment
+    //   });
+    // }
   }
 }

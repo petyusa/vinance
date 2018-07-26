@@ -42,11 +42,8 @@ export class TransactionService {
   editIncome(incomeToEdit: Income) {
     this.incomes.forEach((income) => {
       if (income.id === incomeToEdit.id) {
-        console.log(income);
-        console.log(incomeToEdit);
-        income = incomeToEdit;
-        console.log(income);
-        console.log(incomeToEdit);
+        income.date = incomeToEdit.date;
+        income.amount = incomeToEdit.amount;
       }
     });
     this.incomesChanged.next([...this.incomes]);

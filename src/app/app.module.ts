@@ -19,6 +19,8 @@ import { IncomeListComponent } from './transactions/incomes/income-list/income-l
 import { ForintPipe } from './pipes/forint.pipe';
 import { CostListComponent } from './transactions/costs/cost-list/cost-list.component';
 import { TransferListComponent } from './transactions/transfers/transfer-list/transfer-list.component';
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
+import { IncomeService } from './services/income.service';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,18 @@ import { TransferListComponent } from './transactions/transfers/transfer-list/tr
   imports: [
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [TransactionService, UIService, ModalService, DomService],
+  providers: [
+    TransactionService,
+    UIService,
+    ModalService,
+    DomService,
+    AngularFirestore,
+    IncomeService
+  ],
   entryComponents: [NewIncomeComponent, NewCostComponent, NewTransferComponent],
   bootstrap: [AppComponent]
 })

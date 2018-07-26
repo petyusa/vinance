@@ -8,14 +8,14 @@ export class Income extends Transaction {
     date: Date,
     amount: number,
     comment: string,
-    to: Account,
-    category: IncomeCategory
+    to: string,
+    category: string
   ) {
     super(id, date, amount, comment);
     this.to = to;
     this.category = category;
   }
 
-  to: Account;
-  category: IncomeCategory;
+  to: string;
+  category: string;
 }

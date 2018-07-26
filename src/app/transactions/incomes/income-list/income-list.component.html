@@ -1,5 +1,4 @@
-<table class="table"
-       *ngIf="incomes.length > 0">
+<table class="table">
   <thead class="table__head">
     <tr class="table__row">
       <td>Date</td>
@@ -13,16 +12,16 @@
   <tbody>
     <tr *ngFor="let income of incomes"
         class="table__row">
-      <td>{{ income.date | date }}</td>
-      <td>{{ income.to.name }}</td>
+      <td>{{ income.date }}</td>
+      <!-- <td>{{ income.to.name }}</td> -->
       <td class="text-right">{{ income.amount | forint }}</td>
-      <td>{{ income.category.name }}</td>
+      <!-- <td>{{ income.category.name }}</td> -->
       <td>{{ income.comment }}</td>
       <td>
         <i class="material-icons clickable-danger"
-           (click)="onDeleteIncome(income.id)">delete</i>
+           (click)="onDelete(income.id)">delete</i>
         <i class="material-icons clickable-warning"
-           (click)="onEditIncome(income.id)">edit</i>
+           (click)="onEdit(income.id)">edit</i>
       </td>
     </tr>
   </tbody>

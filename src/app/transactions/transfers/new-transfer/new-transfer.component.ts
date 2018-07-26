@@ -4,6 +4,7 @@ import { Transfer } from '../../../models/models';
 import { TransferCategory } from '../../../models/transferCategory';
 import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
+import { Account } from '../../../models/account';
 
 @Component({
   selector: 'app-new-transfer',
@@ -34,8 +35,8 @@ export class NewTransferComponent implements OnInit {
       values.date,
       values.amount,
       values.comment,
-      values.accountFrom,
-      values.accountTo,
+      new Account(values.accountFrom),
+      new Account(values.accountTo),
       new TransferCategory('fd')
     );
     this.ts.addTransfer(transfer);
