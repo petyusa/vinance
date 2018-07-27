@@ -12,6 +12,7 @@ import { NewTransferComponent } from '../new-transfer/new-transfer.component';
 })
 export class TransferListComponent implements OnInit {
   transfers: Transfer[];
+  isLoading = true;
 
   constructor(private ts: TransferService, private ui: UIService) {}
 
@@ -21,7 +22,7 @@ export class TransferListComponent implements OnInit {
         item.date = new Date(item.date);
       });
       this.transfers = items;
-      console.log(this.transfers);
+      this.isLoading = false;
     });
   }
 

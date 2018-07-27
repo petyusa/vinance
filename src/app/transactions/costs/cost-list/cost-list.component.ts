@@ -12,12 +12,14 @@ import { NewCostComponent } from '../new-cost/new-cost.component';
 })
 export class CostListComponent implements OnInit {
   costs: Cost[];
+  isLoading = true;
 
   constructor(private cs: CostService, private ui: UIService) {}
 
   ngOnInit() {
     this.cs.costs.subscribe((items) => {
       this.costs = items;
+      this.isLoading = false;
     });
   }
 

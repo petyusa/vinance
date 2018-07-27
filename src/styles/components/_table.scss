@@ -1,5 +1,4 @@
 .table {
-  margin: 1rem;
   color: $color-font-secondary;
   font-size: 1.6rem;
   background-color: $color-background-4;
@@ -9,6 +8,11 @@
   border: 1px solid $color-font-tertiary;
   border-radius: 4px;
   overflow: hidden;
+
+  &-heading {
+    color: $color-primary;
+    font-size: 2rem;
+  }
 
   &__row {
     td {

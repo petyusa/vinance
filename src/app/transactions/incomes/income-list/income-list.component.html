@@ -1,5 +1,6 @@
+<h2 class="table-heading">Incomes</h2>
 <table class="table"
-       *ngIf="incomes">
+       *ngIf="!isLoading && incomes">
   <thead class="table__head">
     <tr class="table__row">
       <td>Date</td>
@@ -27,3 +28,5 @@
     </tr>
   </tbody>
 </table>
+<div class="spinner"
+     *ngIf="isLoading"></div>

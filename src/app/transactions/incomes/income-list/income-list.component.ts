@@ -12,6 +12,7 @@ import { NewIncomeComponent } from '../new-income/new-income.component';
 })
 export class IncomeListComponent implements OnInit {
   incomes: Income[];
+  isLoading = true;
 
   constructor(private is: IncomeService, private ui: UIService) {}
 
@@ -19,6 +20,7 @@ export class IncomeListComponent implements OnInit {
     this.is.incomes.subscribe((items) => {
       this.incomes = items;
     });
+    this.isLoading = false;
   }
 
   onEdit(id: string) {

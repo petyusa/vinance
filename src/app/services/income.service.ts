@@ -6,7 +6,6 @@ import { Income } from '../models/models';
 
 @Injectable()
 export class IncomeService {
-  incomeToEdit: Observable<Income>;
   incomes: Observable<Income[]>;
   private collectionPath = 'incomes';
 

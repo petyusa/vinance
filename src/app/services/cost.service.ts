@@ -8,9 +8,7 @@ import { Cost } from '../models/models';
   providedIn: 'root'
 })
 export class CostService {
-  costToEdit: Observable<Cost>;
   costs: Observable<Cost[]>;
-  collection: AngularFirestoreCollection<Cost>;
   private collectionPath = 'costs';
 
   constructor(private aft: AngularFirestore) {

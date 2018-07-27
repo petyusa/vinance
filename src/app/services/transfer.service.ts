@@ -6,7 +6,6 @@ import { Transfer } from '../models/models';
 
 @Injectable()
 export class TransferService {
-  transferToEdit: Observable<Transfer>;
   transfers: Observable<Transfer[]>;
   collection: AngularFirestoreCollection<Transfer>;
   private collectionPath = 'transfers';

@@ -1,6 +1,6 @@
 <div class="modal">
   <div class="form-container">
-    <h2 class="form-container__header">Transfer</h2>
+    <h2 class="form-container__header">{{ id === '' ? 'Add transfer' : 'Edit transfer'}}</h2>
     <hr>
     <form [formGroup]="transferForm"
           (ngSubmit)="onSubmit()">
@@ -41,7 +41,7 @@
                formControlName="comment">
       </div>
       <button type="submit"
-              class="btn btn--primary btn--full mar-top-10">Add income</button>
+              class="btn btn--primary btn--full mar-top-10">Submit</button>
     </form>
   </div>
 </div>
