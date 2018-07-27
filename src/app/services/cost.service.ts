@@ -17,14 +17,14 @@ export class CostService {
     this.init();
   }
 
-  getCost(id: string): Observable<Cost> {
+  get(id: string): Observable<Cost> {
     return this.aft
       .collection(this.collectionPath)
       .doc<Cost>(id)
       .valueChanges();
   }
 
-  addCost(costToAdd: Cost): void {
+  add(costToAdd: Cost): void {
     costToAdd.id = this.aft.createId();
     this.aft
       .collection<Cost>(this.collectionPath)
@@ -32,14 +32,14 @@ export class CostService {
       .set({ ...costToAdd });
   }
 
-  editCost(costToEdit: Cost): void {
+  edit(costToEdit: Cost): void {
     this.aft
       .collection(this.collectionPath)
       .doc<Cost>(costToEdit.id)
       .update({ ...costToEdit });
   }
 
-  deleteCost(id: string): void {
+  delete(id: string): void {
     this.aft
       .collection(this.collectionPath)
       .doc<Cost>(id)

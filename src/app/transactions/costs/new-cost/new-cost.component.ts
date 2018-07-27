@@ -30,9 +30,9 @@ export class NewCostComponent implements OnInit {
       values.category
     );
     if (this.id !== '') {
-      this.cs.editCost(cost);
+      this.cs.edit(cost);
     } else {
-      this.cs.addCost(cost);
+      this.cs.add(cost);
     }
     this.ui.hideModal();
   }
@@ -48,7 +48,7 @@ export class NewCostComponent implements OnInit {
       comment: new FormControl('')
     });
     if (this.id !== '') {
-      this.cs.getCost(this.id).subscribe((cost) => {
+      this.cs.get(this.id).subscribe((cost) => {
         this.costForm.setValue({
           id: cost.id,
           date: new Date(cost.date.toDate()).toISOString().substring(0, 10),

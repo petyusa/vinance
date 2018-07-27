@@ -30,9 +30,9 @@ export class NewIncomeComponent implements OnInit {
       values.category
     );
     if (this.id !== '') {
-      this.is.editIncome(income);
+      this.is.edit(income);
     } else {
-      this.is.addIncome(income);
+      this.is.add(income);
     }
     this.ui.hideModal();
   }
@@ -48,8 +48,7 @@ export class NewIncomeComponent implements OnInit {
       comment: new FormControl('')
     });
     if (this.id !== '') {
-      this.is.getIncome(this.id).subscribe((income) => {
-        console.log(income.date);
+      this.is.get(this.id).subscribe((income) => {
         this.incomeForm.setValue({
           id: income.id,
           date: new Date(income.date.toDate()).toISOString().substring(0, 10),

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 
 import { Income } from '../models/models';
@@ -8,21 +8,20 @@ import { Income } from '../models/models';
 export class IncomeService {
   incomeToEdit: Observable<Income>;
   incomes: Observable<Income[]>;
-  collection: AngularFirestoreCollection<Income>;
-  private collectionPath = 'income';
+  private collectionPath = 'incomes';
 
   constructor(private aft: AngularFirestore) {
     this.init();
   }
 
-  getIncome(id: string): Observable<Income> {
+  get(id: string): Observable<Income> {
     return this.aft
-      .collection(this.collectionPath)
+      .collection<Income>(this.collectionPath)
       .doc<Income>(id)
       .valueChanges();
   }
 
-  addIncome(incomeToAdd: Income): void {
+  add(incomeToAdd: Income): void {
     incomeToAdd.id = this.aft.createId();
     this.aft
       .collection<Income>(this.collectionPath)
@@ -30,16 +29,16 @@ export class IncomeService {
       .set({ ...incomeToAdd });
   }
 
-  editIncome(incomeToEdit: Income): void {
+  edit(incomeToEdit: Income): void {
     this.aft
-      .collection(this.collectionPath)
+      .collection<Income>(this.collectionPath)
       .doc<Income>(incomeToEdit.id)
       .update({ ...incomeToEdit });
   }
 
-  deleteIncome(id: string): void {
+  delete(id: string): void {
     this.aft
-      .collection(this.collectionPath)
+      .collection<Income>(this.collectionPath)
       .doc<Income>(id)
       .delete();
   }

@@ -18,7 +18,6 @@ export class IncomeListComponent implements OnInit {
   ngOnInit() {
     this.is.incomes.subscribe((items) => {
       this.incomes = items;
-      console.log(this.incomes);
     });
   }
 
@@ -27,6 +26,6 @@ export class IncomeListComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    this.is.deleteIncome(id);
+    this.is.delete(id);
   }
 }

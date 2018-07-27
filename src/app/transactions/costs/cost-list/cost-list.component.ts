@@ -26,6 +26,6 @@ export class CostListComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    this.cs.deleteCost(id);
+    this.cs.delete(id);
   }
 }
