@@ -18,6 +18,7 @@ export class IncomeListComponent implements OnInit {
   ngOnInit() {
     this.is.incomes.subscribe((items) => {
       this.incomes = items;
+      console.log(this.incomes);
     });
   }
 

@@ -5,7 +5,7 @@ import { IncomeCategory } from './incomeCategory';
 export class Income extends Transaction {
   constructor(
     id: string,
-    date: Date,
+    date: any,
     amount: number,
     comment: string,
     to: string,

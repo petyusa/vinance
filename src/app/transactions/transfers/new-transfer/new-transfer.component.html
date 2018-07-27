@@ -3,8 +3,12 @@
     <h2 class="form-container__header">Transfer</h2>
     <hr>
     <form [formGroup]="transferForm"
-          (ngSubmit)="onAddTransfer()">
+          (ngSubmit)="onSubmit()">
       <div class="form">
+        <input type="text"
+               class="hidden"
+               id="transfer-id"
+               formControlName="id">
         <label for="transfer-date"
                class="form__label">Date</label>
         <input type="date"
@@ -16,13 +20,13 @@
         <input type="text"
                class="form__input"
                id="transfer-from"
-               formControlName="accountFrom">
+               formControlName="from">
         <label for="transfer-to"
                class="form__label">Account To</label>
         <input type="text"
                class="form__input"
                id="transfer-to"
-               formControlName="accountTo">
+               formControlName="to">
         <label for="transfer-amount"
                class="form__label">Amount</label>
         <input type="number"

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Transfer } from '../../../models/models';
-import { Subscription } from 'rxjs';
-import { TransactionService } from '../../../services/transaction.service';
+import { TransferService } from '../../../services/transfer.service';
+import { UIService } from '../../../services/ui.service';
+import { NewTransferComponent } from '../new-transfer/new-transfer.component';
 
 @Component({
   selector: 'app-transfer-list',
@@ -9,19 +11,25 @@ import { TransactionService } from '../../../services/transaction.service';
   styleUrls: ['./transfer-list.component.scss']
 })
 export class TransferListComponent implements OnInit {
-  transfers: Transfer[] = [];
-  transfersChanged: Subscription;
+  transfers: Transfer[];
 
-  constructor(private ts: TransactionService) {}
+  constructor(private ts: TransferService, private ui: UIService) {}
 
   ngOnInit() {
-    this.transfers = this.ts.getTransfers();
-    this.transfersChanged = this.ts.transfersChanged.subscribe((transfers) => {
-      this.transfers = transfers;
+    this.ts.transfers.subscribe((items) => {
+      items.forEach((item) => {
+        item.date = new Date(item.date);
+      });
+      this.transfers = items;
+      console.log(this.transfers);
     });
   }
 
-  onDeleteTransfer(id: string) {
-    this.ts.deleteTransfer(id);
+  onEdit(id: string) {
+    this.ui.showModal(NewTransferComponent, { id }, {});
+  }
+
+  onDelete(id: string) {
+    this.ts.delete(id);
   }
 }

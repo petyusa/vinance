@@ -3,7 +3,7 @@ import { Transaction } from './transaction';
 export class Cost extends Transaction {
   constructor(
     id: string,
-    date: Date,
+    date: any,
     amount: number,
     comment: string,
     from: string,

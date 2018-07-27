@@ -21,6 +21,7 @@ import { CostListComponent } from './transactions/costs/cost-list/cost-list.comp
 import { TransferListComponent } from './transactions/transfers/transfer-list/transfer-list.component';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { IncomeService } from './services/income.service';
+import { TransferService } from './services/transfer.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { IncomeService } from './services/income.service';
     ModalService,
     DomService,
     AngularFirestore,
-    IncomeService
+    IncomeService,
+    TransferService
   ],
   entryComponents: [NewIncomeComponent, NewCostComponent, NewTransferComponent],
   bootstrap: [AppComponent]

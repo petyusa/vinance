@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Transfer } from '../../../models/models';
-import { TransferCategory } from '../../../models/transferCategory';
-import { TransactionService } from '../../../services/transaction.service';
 import { UIService } from '../../../services/ui.service';
-import { Account } from '../../../models/account';
+import { TransferService } from '../../../services/transfer.service';
 
 @Component({
   selector: 'app-new-transfer',
@@ -12,38 +10,59 @@ import { Account } from '../../../models/account';
   styleUrls: ['./new-transfer.component.scss']
 })
 export class NewTransferComponent implements OnInit {
+  @Input() id = '';
   transferForm: FormGroup;
 
-  constructor(private ts: TransactionService, private ui: UIService) {}
+  constructor(private ts: TransferService, private ui: UIService) {}
 
   ngOnInit() {
-    const today = new Date().toISOString().substring(0, 10);
-    this.transferForm = new FormGroup({
-      date: new FormControl(today, [Validators.required]),
-      amount: new FormControl('', [Validators.required, Validators.min(1)]),
-      comment: new FormControl(''),
-      accountTo: new FormControl('', Validators.required),
-      accountFrom: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required)
-    });
+    this.initForm();
   }
 
-  onAddTransfer() {
+  onSubmit() {
     const values = this.transferForm.value;
     const transfer = new Transfer(
-      '999',
+      values.id,
       values.date,
       values.amount,
       values.comment,
-      new Account(values.accountFrom),
-      new Account(values.accountTo),
-      new TransferCategory('fd')
+      values.from,
+      values.to,
+      values.category
     );
-    this.ts.addTransfer(transfer);
-    this.closeModal();
+    if (this.id === '') {
+      this.ts.add(transfer);
+    } else {
+      this.ts.edit(transfer);
+    }
+
+    this.ui.hideModal();
   }
 
-  private closeModal() {
-    this.ui.hideModal();
+  private initForm() {
+    const today = new Date().toISOString().substring(0, 10);
+    this.transferForm = new FormGroup({
+      id: new FormControl(''),
+      date: new FormControl(today, [Validators.required]),
+      amount: new FormControl('', [Validators.required, Validators.min(1)]),
+      comment: new FormControl(''),
+      to: new FormControl('', Validators.required),
+      from: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required)
+    });
+    if (this.id !== '') {
+      this.ts.get(this.id).subscribe((transfer) => {
+        transfer.date = new Date(transfer.date);
+        this.transferForm.setValue({
+          id: transfer.id,
+          date: transfer.date.toISOString().substring(0, 10),
+          to: transfer.to,
+          from: transfer.from,
+          amount: transfer.amount,
+          category: transfer.category,
+          comment: transfer.comment
+        });
+      });
+    }
   }
 }

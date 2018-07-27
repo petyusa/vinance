@@ -1,5 +1,5 @@
 export class Transaction {
-  constructor(id: string, date: Date, amount: number, comment: string) {
+  constructor(id: string, date: any, amount: number, comment: string) {
     this.id = id;
     this.date = date;
     this.amount = amount;
@@ -7,7 +7,7 @@ export class Transaction {
   }
 
   id: string;
-  date: Date;
+  date: any;
   amount: number;
   comment: string;
 }
