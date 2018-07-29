@@ -22,6 +22,8 @@ import { TransferListComponent } from './transactions/transfers/transfer-list/tr
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { IncomeService } from './services/income.service';
 import { TransferService } from './services/transfer.service';
+import { AccountListComponent } from './accounts/account-list/account-list.component';
+import { NewAccountComponent } from './accounts/new-account/new-account.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { TransferService } from './services/transfer.service';
     IncomeListComponent,
     ForintPipe,
     CostListComponent,
-    TransferListComponent
+    TransferListComponent,
+    AccountListComponent,
+    NewAccountComponent
   ],
   imports: [
     AppRoutingModule,
@@ -52,7 +56,12 @@ import { TransferService } from './services/transfer.service';
     IncomeService,
     TransferService
   ],
-  entryComponents: [NewIncomeComponent, NewCostComponent, NewTransferComponent],
+  entryComponents: [
+    NewIncomeComponent,
+    NewCostComponent,
+    NewTransferComponent,
+    NewAccountComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -16,10 +16,10 @@
              formControlName="date">
       <label for="income-to"
              class="form__label">Account To</label>
-      <input type="text"
-             class="form__input"
-             id="income-to"
-             formControlName="to">
+      <select formControlName="to">
+        <option *ngFor="let account of accounts"
+                value="{{ account.name }}">{{ account.name }}</option>
+      </select>
       <label for="income-amount"
              class="form__label">Amount</label>
       <input type="number"

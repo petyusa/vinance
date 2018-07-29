@@ -1,21 +1,27 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Transfer } from '../../../models/models';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { Account, Transfer } from '../../../models/models';
 import { UIService } from '../../../services/ui.service';
 import { TransferService } from '../../../services/transfer.service';
+import { AccountService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-new-transfer',
   templateUrl: './new-transfer.component.html',
   styleUrls: ['./new-transfer.component.scss']
 })
-export class NewTransferComponent implements OnInit {
+export class NewTransferComponent implements OnInit, OnDestroy {
   @Input() id = '';
   transferForm: FormGroup;
+  accounts: Account[];
+  subscription: Subscription;
 
-  constructor(private ts: TransferService, private ui: UIService) {}
+  constructor(private ts: TransferService, private ui: UIService, private accSer: AccountService) {}
 
   ngOnInit() {
+    this.subscription = this.accSer.accounts$.subscribe((accs) => (this.accounts = accs));
     this.initForm();
   }
 
@@ -23,7 +29,7 @@ export class NewTransferComponent implements OnInit {
     const values = this.transferForm.value;
     const transfer = new Transfer(
       values.id,
-      values.date,
+      new Date(values.date),
       values.amount,
       values.comment,
       values.from,
@@ -37,6 +43,10 @@ export class NewTransferComponent implements OnInit {
     }
 
     this.ui.hideModal();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private initForm() {

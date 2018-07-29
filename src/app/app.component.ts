@@ -5,6 +5,7 @@ import { UIService } from './services/ui.service';
 import { NewIncomeComponent } from './transactions/incomes/new-income/new-income.component';
 import { NewCostComponent } from './transactions/costs/new-cost/new-cost.component';
 import { NewTransferComponent } from './transactions/transfers/new-transfer/new-transfer.component';
+import { NewAccountComponent } from './accounts/new-account/new-account.component';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,9 @@ export class AppComponent implements OnInit {
         break;
       case 'Transfer':
         this.ui.showModal(NewTransferComponent, {}, {});
+        break;
+      case 'Account':
+        this.ui.showModal(NewAccountComponent, {}, {});
         break;
       default:
         break;

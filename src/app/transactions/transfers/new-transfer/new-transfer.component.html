@@ -17,16 +17,16 @@
                formControlName="date">
         <label for="transfer-from"
                class="form__label">Account From</label>
-        <input type="text"
-               class="form__input"
-               id="transfer-from"
-               formControlName="from">
+        <select formControlName="to">
+          <option *ngFor="let account of accounts"
+                  value="{{ account.name }}">{{ account.name }}</option>
+        </select>
         <label for="transfer-to"
                class="form__label">Account To</label>
-        <input type="text"
-               class="form__input"
-               id="transfer-to"
-               formControlName="to">
+        <select formControlName="from">
+          <option *ngFor="let account of accounts"
+                  value="{{ account.name }}">{{ account.name }}</option>
+        </select>
         <label for="transfer-amount"
                class="form__label">Amount</label>
         <input type="number"

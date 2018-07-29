@@ -1,3 +1,3 @@
 export class Account {
-  constructor(public name: string, public balance: number) {}
+  constructor(public id: string, public name: string, public isSaving: boolean) {}
 }

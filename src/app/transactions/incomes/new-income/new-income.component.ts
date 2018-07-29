@@ -1,21 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
-import { Income } from '../../../models/income';
+import { Account, Income } from '../../../models/models';
 import { UIService } from '../../../services/ui.service';
 import { IncomeService } from '../../../services/income.service';
+import { AccountService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-new-income',
   templateUrl: './new-income.component.html',
   styleUrls: ['./new-income.component.scss']
 })
-export class NewIncomeComponent implements OnInit {
+export class NewIncomeComponent implements OnInit, OnDestroy {
   @Input() id = '';
   incomeForm: FormGroup;
-  constructor(private ui: UIService, private is: IncomeService) {}
+  accounts: Account[];
+  subscription: Subscription;
+
+  constructor(private ui: UIService, private is: IncomeService, private accSer: AccountService) {}
 
   ngOnInit() {
+    this.subscription = this.accSer.accounts$.subscribe((account) => {
+      this.accounts = account;
+    });
     this.initForm();
   }
 
@@ -35,6 +43,10 @@ export class NewIncomeComponent implements OnInit {
       this.is.add(income);
     }
     this.ui.hideModal();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private initForm() {

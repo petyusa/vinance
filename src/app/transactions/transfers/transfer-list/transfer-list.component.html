@@ -15,7 +15,7 @@
   <tbody>
     <tr *ngFor="let transfer of transfers"
         class="table__row">
-      <td>{{ transfer.date | date }}</td>
+      <td>{{ transfer.date.toDate() | date }}</td>
       <td>{{ transfer.from }}</td>
       <td>{{ transfer.to }}</td>
       <td class="text-right">{{ transfer.amount | forint }}</td>

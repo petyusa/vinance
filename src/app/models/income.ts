@@ -1,6 +1,4 @@
 import { Transaction } from './transaction';
-import { Account } from './account';
-import { IncomeCategory } from './incomeCategory';
 
 export class Income extends Transaction {
   constructor(

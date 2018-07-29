@@ -18,10 +18,8 @@ export class TransferListComponent implements OnInit {
 
   ngOnInit() {
     this.ts.transfers.subscribe((items) => {
-      items.forEach((item) => {
-        item.date = new Date(item.date);
-      });
       this.transfers = items;
+      console.log(this.transfers);
       this.isLoading = false;
     });
   }

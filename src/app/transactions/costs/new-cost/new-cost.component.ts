@@ -1,21 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
-import { Cost } from '../../../models/models';
+import { Account, Cost } from '../../../models/models';
 import { UIService } from '../../../services/ui.service';
 import { CostService } from '../../../services/cost.service';
+import { AccountService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-new-cost',
   templateUrl: './new-cost.component.html',
   styleUrls: ['./new-cost.component.scss']
 })
-export class NewCostComponent implements OnInit {
+export class NewCostComponent implements OnInit, OnDestroy {
   @Input() id = '';
   costForm: FormGroup;
-  constructor(private cs: CostService, private ui: UIService) {}
+  accounts: Account[] = [];
+  subscription: Subscription;
+
+  constructor(private cs: CostService, private ui: UIService, private accSer: AccountService) {}
 
   ngOnInit() {
+    this.subscription = this.accSer.accounts$.subscribe((accs) => {
+      accs.forEach((acc) => {
+        if (!acc.isSaving) {
+          this.accounts.push(acc);
+        }
+      });
+    });
     this.initForm();
   }
 
@@ -35,6 +47,10 @@ export class NewCostComponent implements OnInit {
       this.cs.add(cost);
     }
     this.ui.hideModal();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private initForm() {

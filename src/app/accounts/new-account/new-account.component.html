@@ -1,0 +1,30 @@
+<div class="form-container">
+  <h2 class="form-container__header">{{ id === '' ? 'Add account' : 'Edit account'}}</h2>
+  <hr>
+  <form [formGroup]="accountForm"
+        (ngSubmit)="onSubmit()">
+    <div class="form">
+      <input type="text"
+             class="hidden"
+             id="acc-id"
+             formControlName="id">
+      <label for="acc-name"
+             class="form__label">Name</label>
+      <input type="text"
+             class="form__input"
+             id="acc-name"
+             formControlName="name">
+      <input type="checkbox"
+             class="form__radio-input"
+             id="acc-is-saving"
+             formControlName="isSaving">
+      <label for="acc-is-saving"
+             class="form__radio-label">
+        <span class="form__radio-button"></span>
+        Saving Account
+      </label>
+    </div>
+    <button type="submit"
+            class="btn btn--primary btn--full mar-top-10">Submit</button>
+  </form>
+</div>
