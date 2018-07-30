@@ -24,6 +24,7 @@ import { IncomeService } from './services/income.service';
 import { TransferService } from './services/transfer.service';
 import { AccountListComponent } from './accounts/account-list/account-list.component';
 import { NewAccountComponent } from './accounts/new-account/new-account.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NewAccountComponent } from './accounts/new-account/new-account.componen
     CostListComponent,
     TransferListComponent,
     AccountListComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    SettingsComponent
   ],
   imports: [
     AppRoutingModule,

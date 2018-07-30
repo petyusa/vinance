@@ -3,6 +3,8 @@ import { AccountService } from '../../services/account.service';
 
 import { Account } from '../../models/models';
 import { Subscription } from '../../../../node_modules/rxjs';
+import { UIService } from '../../services/ui.service';
+import { NewAccountComponent } from '../new-account/new-account.component';
 
 @Component({
   selector: 'app-account-list',
@@ -12,13 +14,27 @@ import { Subscription } from '../../../../node_modules/rxjs';
 export class AccountListComponent implements OnInit, OnDestroy {
   accounts: Account[];
   subscription: Subscription;
+  isLoading = true;
 
-  constructor(private as: AccountService) {}
+  constructor(private accSer: AccountService, private uiSer: UIService) {}
 
   ngOnInit() {
-    this.as.accounts$.subscribe((accounts) => {
+    this.accSer.accounts$.subscribe((accounts) => {
       this.accounts = accounts;
+      this.isLoading = false;
     });
+  }
+
+  onAdd() {
+    this.uiSer.showModal(NewAccountComponent, {}, {});
+  }
+
+  onEdit(id: string): void {
+    this.uiSer.showModal(NewAccountComponent, { id }, {});
+  }
+
+  onDelete(accId: string): void {
+    this.accSer.delete(accId);
   }
 
   ngOnDestroy() {

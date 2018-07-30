@@ -14,7 +14,7 @@ export class NewAccountComponent implements OnInit {
   @Input() id = '';
   accountForm: FormGroup;
 
-  constructor(private as: AccountService, private ui: UIService) {}
+  constructor(private accSer: AccountService, private uiSer: UIService) {}
 
   ngOnInit() {
     this.initForm();
@@ -23,8 +23,12 @@ export class NewAccountComponent implements OnInit {
   onSubmit() {
     const values = this.accountForm.value;
     const acc = new Account(values.id, values.name, values.isSaving);
-    this.as.add(acc);
-    this.ui.hideModal();
+    if (this.id === '') {
+      this.accSer.add(acc);
+    } else {
+      this.accSer.edit(acc);
+    }
+    this.uiSer.hideModal();
   }
 
   private initForm() {
@@ -33,5 +37,16 @@ export class NewAccountComponent implements OnInit {
       name: new FormControl('', Validators.required),
       isSaving: new FormControl(false, Validators.required)
     });
+
+    if (this.id !== '') {
+      console.log('haha');
+      this.accSer.get(this.id).subscribe((acc) => {
+        this.accountForm.setValue({
+          id: acc.id,
+          name: acc.name,
+          isSaving: acc.isSaving
+        });
+      });
+    }
   }
 }
