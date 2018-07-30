@@ -29,12 +29,15 @@ export class NewIncomeComponent implements OnInit, OnDestroy {
 
   onSubmitIncome() {
     const values = this.incomeForm.value;
+    const accName = values.to.split('&')[0];
+    const accId = values.to.split('&')[1];
     const income = new Income(
       values.id,
       new Date(values.date),
       values.amount,
       values.comment,
-      values.to,
+      accName,
+      accId,
       values.category
     );
     if (this.id !== '') {
@@ -64,7 +67,7 @@ export class NewIncomeComponent implements OnInit, OnDestroy {
         this.incomeForm.setValue({
           id: income.id,
           date: new Date(income.date.toDate()).toISOString().substring(0, 10),
-          to: income.to,
+          to: `${income.to}&${income.toId}`,
           amount: income.amount,
           category: income.category,
           comment: income.comment

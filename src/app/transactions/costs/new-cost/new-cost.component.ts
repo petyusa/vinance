@@ -33,12 +33,15 @@ export class NewCostComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const values = this.costForm.value;
+    const accId = values.from.split('&')[1];
+    const accName = values.from.split('&')[0];
     const cost = new Cost(
       values.id,
       new Date(values.date),
       values.amount,
       values.comment,
-      values.from,
+      accName,
+      accId,
       values.category
     );
     if (this.id !== '') {
@@ -68,7 +71,7 @@ export class NewCostComponent implements OnInit, OnDestroy {
         this.costForm.setValue({
           id: cost.id,
           date: new Date(cost.date.toDate()).toISOString().substring(0, 10),
-          from: cost.from,
+          from: `${cost.from}&${cost.fromId}`,
           amount: cost.amount,
           category: cost.category,
           comment: cost.comment

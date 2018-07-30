@@ -7,13 +7,16 @@ export class Income extends Transaction {
     amount: number,
     comment: string,
     to: string,
+    toId: string,
     category: string
   ) {
     super(id, date, amount, comment);
     this.to = to;
+    this.toId = toId;
     this.category = category;
   }
 
   to: string;
+  toId: string;
   category: string;
 }
