@@ -19,13 +19,13 @@
                class="form__label">Account From</label>
         <select formControlName="to">
           <option *ngFor="let account of accounts"
-                  value="{{ account.name }}">{{ account.name }}</option>
+                  value="{{ account.name }}&{{ account.id }}">{{ account.name }}</option>
         </select>
         <label for="transfer-to"
                class="form__label">Account To</label>
         <select formControlName="from">
           <option *ngFor="let account of accounts"
-                  value="{{ account.name }}">{{ account.name }}</option>
+                  value="{{ account.name }}&{{ account.id }}">{{ account.name }}</option>
         </select>
         <label for="transfer-amount"
                class="form__label">Amount</label>

@@ -27,13 +27,19 @@ export class NewTransferComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const values = this.transferForm.value;
+    const fromName = values.from.split('&')[0];
+    const fromId = values.from.split('&')[1];
+    const toName = values.to.split('&')[0];
+    const toId = values.to.split('&')[1];
     const transfer = new Transfer(
       values.id,
       new Date(values.date),
       values.amount,
       values.comment,
-      values.from,
-      values.to,
+      fromName,
+      fromId,
+      toName,
+      toId,
       values.category
     );
     if (this.id === '') {
@@ -66,8 +72,8 @@ export class NewTransferComponent implements OnInit, OnDestroy {
         this.transferForm.setValue({
           id: transfer.id,
           date: transfer.date.toISOString().substring(0, 10),
-          to: transfer.to,
-          from: transfer.from,
+          to: `${transfer.to}&${transfer.toId}`,
+          from: `${transfer.from}&${transfer.fromId}`,
           amount: transfer.amount,
           category: transfer.category,
           comment: transfer.comment
