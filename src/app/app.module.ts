@@ -25,6 +25,7 @@ import { TransferService } from './services/transfer.service';
 import { AccountListComponent } from './accounts/account-list/account-list.component';
 import { NewAccountComponent } from './accounts/new-account/new-account.component';
 import { SettingsComponent } from './settings/settings.component';
+import { IncomeCategoryService } from './services/income-category.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { SettingsComponent } from './settings/settings.component';
     DomService,
     AngularFirestore,
     IncomeService,
-    TransferService
+    TransferService,
+    IncomeCategoryService
   ],
   entryComponents: [
     NewIncomeComponent,
