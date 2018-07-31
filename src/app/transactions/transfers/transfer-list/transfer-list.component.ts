@@ -19,7 +19,6 @@ export class TransferListComponent implements OnInit {
   ngOnInit() {
     this.ts.transfers.subscribe((items) => {
       this.transfers = items;
-      console.log(this.transfers);
       this.isLoading = false;
     });
   }

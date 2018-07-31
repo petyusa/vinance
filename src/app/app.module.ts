@@ -29,6 +29,7 @@ import { TransferService } from './services/transfer.service';
 import { UIService } from './services/ui.service';
 
 import { ForintPipe } from './pipes/forint.pipe';
+import { IsSavingPipe } from './pipes/is-saving.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ForintPipe } from './pipes/forint.pipe';
     TransferListComponent,
     AccountListComponent,
     NewAccountComponent,
-    SettingsComponent
+    SettingsComponent,
+    IsSavingPipe
   ],
   imports: [
     AppRoutingModule,

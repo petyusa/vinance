@@ -4,7 +4,7 @@
   <thead class="table__head">
     <tr class="table__row">
       <td>Name</td>
-      <td>IsSaving</td>
+      <td></td>
       <td>Balance</td>
       <td>
         <button class="btn btn--primary btn--rounded btn--icon"
@@ -19,8 +19,15 @@
   <tbody>
     <tr *ngFor="let account of accounts"
         class="table__row">
-      <td>{{ account.name }}</td>
-      <td>{{ account.isSaving }}</td>
+      <td>
+        {{ account.name }}
+
+      </td>
+      <td>
+        <i class="material-icons">
+          {{ account.isSaving | isSaving }}
+        </i>
+      </td>
       <td class="text-right">{{ account.balance | forint }}</td>
       <td>
         <i class="material-icons clickable-danger"
