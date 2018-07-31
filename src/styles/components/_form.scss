@@ -5,10 +5,10 @@
   background-color: $color-background-1;
   box-shadow: 0 0 1rem 0.5rem black;
   padding: 1rem;
-  color: $color-font-primary;
 
   &__header {
     font-size: 3rem;
+    color: $color-font-primary;
   }
 
   @media only screen and (max-width: 600px) {
@@ -17,6 +17,7 @@
 }
 
 .form {
+  color: $color-font-primary;
   margin-top: 1rem;
   display: grid;
   grid-template-columns: minmax(100px, max-content) 1fr;

@@ -30,6 +30,8 @@ import { UIService } from './services/ui.service';
 
 import { ForintPipe } from './pipes/forint.pipe';
 import { IsSavingPipe } from './pipes/is-saving.pipe';
+import { CostCategoryListComponent } from './cost-category-list/cost-category-list.component';
+import { NewCostCategoryComponent } from './costs/new-cost-category/new-cost-category.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { IsSavingPipe } from './pipes/is-saving.pipe';
     AccountListComponent,
     NewAccountComponent,
     SettingsComponent,
-    IsSavingPipe
+    IsSavingPipe,
+    CostCategoryListComponent,
+    NewCostCategoryComponent
   ],
   imports: [
     AppRoutingModule,

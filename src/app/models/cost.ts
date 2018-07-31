@@ -8,15 +8,18 @@ export class Cost extends Transaction {
     comment: string,
     from: string,
     fromId: string,
-    category: string
+    category: string,
+    categoryId: string
   ) {
     super(id, date, amount, comment);
     this.from = from;
     this.fromId = fromId;
     this.category = category;
+    this.categoryId = categoryId;
   }
 
   from: string;
   fromId: string;
   category: string;
+  categoryId: string;
 }

@@ -6,6 +6,8 @@ import { Account, Cost } from '../../../models/models';
 import { UIService } from '../../../services/ui.service';
 import { CostService } from '../../../services/cost.service';
 import { AccountService } from '../../../services/account.service';
+import { CostCategoryService } from '../../../services/cost-category.service';
+import { CostCategory } from '../../../models/costCategory';
 
 @Component({
   selector: 'app-new-cost',
@@ -16,18 +18,31 @@ export class NewCostComponent implements OnInit, OnDestroy {
   @Input() id = '';
   costForm: FormGroup;
   accounts: Account[] = [];
-  subscription: Subscription;
+  cocas: CostCategory[] = [];
+  subscriptions: Subscription[] = [];
 
-  constructor(private cs: CostService, private ui: UIService, private accSer: AccountService) {}
+  constructor(
+    private cs: CostService,
+    private ui: UIService,
+    private accSer: AccountService,
+    private coCaSer: CostCategoryService
+  ) {}
 
   ngOnInit() {
-    this.subscription = this.accSer.accountsChanged.subscribe((accs) => {
-      accs.forEach((acc) => {
-        if (!acc.isSaving) {
-          this.accounts.push(acc);
-        }
-      });
-    });
+    this.subscriptions.push(
+      this.accSer.accountsChanged.subscribe((accs) => {
+        accs.forEach((acc) => {
+          if (!acc.isSaving) {
+            this.accounts.push(acc);
+          }
+        });
+      })
+    );
+    this.subscriptions.push(
+      this.coCaSer.costCategories.subscribe((cats) => {
+        this.cocas = cats;
+      })
+    );
     this.accSer.refreshAccounts();
     this.initForm();
   }
@@ -36,6 +51,8 @@ export class NewCostComponent implements OnInit, OnDestroy {
     const values = this.costForm.value;
     const accId = values.from.split('&')[1];
     const accName = values.from.split('&')[0];
+    const catId = values.category.split('&')[1];
+    const catName = values.category.split('&')[0];
     const cost = new Cost(
       values.id,
       new Date(values.date),
@@ -43,7 +60,8 @@ export class NewCostComponent implements OnInit, OnDestroy {
       values.comment,
       accName,
       accId,
-      values.category
+      catName,
+      catId
     );
     if (this.id !== '') {
       this.cs.edit(cost);
@@ -54,7 +72,9 @@ export class NewCostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach((sub) => {
+      sub.unsubscribe();
+    });
   }
 
   private initForm() {
@@ -74,7 +94,7 @@ export class NewCostComponent implements OnInit, OnDestroy {
           date: new Date(cost.date.toDate()).toISOString().substring(0, 10),
           from: `${cost.from}&${cost.fromId}`,
           amount: cost.amount,
-          category: cost.category,
+          category: `${cost.category}&${cost.categoryId}`,
           comment: cost.comment
         });
       });

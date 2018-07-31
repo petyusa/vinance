@@ -1,7 +1,11 @@
 export class CostCategory {
-  constructor(name: string) {
+  constructor(id: string, name: string, balance: number) {
+    this.id = id;
     this.name = name;
+    this.balance = balance;
   }
 
+  id: string;
   name: string;
+  balance: number;
 }

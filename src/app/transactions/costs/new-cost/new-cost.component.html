@@ -28,10 +28,10 @@
              formControlName="amount">
       <label for="cost-category"
              class="form__label">Category</label>
-      <input type="text"
-             class="form__input"
-             id="cost-category"
-             formControlName="category">
+      <select formControlName="category">
+        <option *ngFor="let category of cocas"
+                value="{{ category.name }}&{{ category.id }}">{{ category.name }}</option>
+      </select>
       <label for="cost-comment"
              class="form__label">Comment</label>
       <input type="text"
