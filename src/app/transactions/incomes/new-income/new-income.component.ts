@@ -21,9 +21,10 @@ export class NewIncomeComponent implements OnInit, OnDestroy {
   constructor(private ui: UIService, private is: IncomeService, private accSer: AccountService) {}
 
   ngOnInit() {
-    this.subscription = this.accSer.accounts$.subscribe((account) => {
-      this.accounts = account;
+    this.subscription = this.accSer.accountsChanged.subscribe((accounts) => {
+      this.accounts = accounts;
     });
+    this.accSer.refreshAccounts();
     this.initForm();
   }
 

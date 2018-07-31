@@ -21,13 +21,14 @@ export class NewCostComponent implements OnInit, OnDestroy {
   constructor(private cs: CostService, private ui: UIService, private accSer: AccountService) {}
 
   ngOnInit() {
-    this.subscription = this.accSer.accounts$.subscribe((accs) => {
+    this.subscription = this.accSer.accountsChanged.subscribe((accs) => {
       accs.forEach((acc) => {
         if (!acc.isSaving) {
           this.accounts.push(acc);
         }
       });
     });
+    this.accSer.refreshAccounts();
     this.initForm();
   }
 

@@ -21,7 +21,8 @@ export class NewTransferComponent implements OnInit, OnDestroy {
   constructor(private ts: TransferService, private ui: UIService, private accSer: AccountService) {}
 
   ngOnInit() {
-    this.subscription = this.accSer.accounts$.subscribe((accs) => (this.accounts = accs));
+    this.subscription = this.accSer.accountsChanged.subscribe((accs) => (this.accounts = accs));
+    this.accSer.refreshAccounts();
     this.initForm();
   }
 
