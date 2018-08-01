@@ -28,7 +28,7 @@ export class AccountService {
 
   refreshAccounts() {
     this.afs
-      .collection<Account>(this.collectionPath)
+      .collection<Account>(this.collectionPath, (ref) => ref.orderBy('normalizedName'))
       .valueChanges()
       .subscribe((accounts) => {
         this.accountsChanged.next(accounts);
