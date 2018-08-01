@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CostCategory } from '../../models/costCategory';
 import { CostCategoryService } from '../../services/cost-category.service';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-new-cost-category',
@@ -10,7 +11,7 @@ import { CostCategoryService } from '../../services/cost-category.service';
 })
 export class NewCostCategoryComponent implements OnInit {
   coCaForm: FormGroup;
-  constructor(private cocaSer: CostCategoryService) {}
+  constructor(private cocaSer: CostCategoryService, private router: Router) {}
 
   ngOnInit() {
     this.initForm();
@@ -20,6 +21,7 @@ export class NewCostCategoryComponent implements OnInit {
     const values = this.coCaForm.value;
     const coca = new CostCategory(values.id, values.name, values.balance);
     this.cocaSer.add(coca);
+    this.router.navigate(['/costs']);
   }
 
   private initForm() {

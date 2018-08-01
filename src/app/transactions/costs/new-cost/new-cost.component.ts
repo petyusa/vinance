@@ -68,7 +68,7 @@ export class NewCostComponent implements OnInit, OnDestroy {
     } else {
       this.cs.add(cost);
     }
-    this.ui.hideModal();
+    // this.ui.hideModal();
   }
 
   ngOnDestroy() {
