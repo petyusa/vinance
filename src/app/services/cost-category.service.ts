@@ -26,4 +26,18 @@ export class CostCategoryService {
       .doc<CostCategory>(id)
       .set({ ...coca });
   }
+
+  edit(coca: CostCategory) {
+    this.afs
+      .collection<CostCategory>(this.collectionPath)
+      .doc<CostCategory>(coca.id)
+      .update({ ...coca });
+  }
+
+  delete(id: string) {
+    this.afs
+      .collection<CostCategory>(this.collectionPath)
+      .doc<CostCategory>(id)
+      .delete();
+  }
 }
