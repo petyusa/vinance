@@ -5,4 +5,6 @@ export class Account {
     public isSaving: boolean,
     public balance = 0
   ) {}
+
+  normalizedName: string;
 }

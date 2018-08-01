@@ -7,5 +7,6 @@ export class CostCategory {
 
   id: string;
   name: string;
+  normalizedName: string;
   balance: number;
 }

@@ -15,7 +15,7 @@ export class AccountService {
 
   constructor(private afs: AngularFirestore) {
     this.accounts$ = this.afs
-      .collection<Account>(this.collectionPath, (ref) => ref.orderBy('name'))
+      .collection<Account>(this.collectionPath, (ref) => ref.orderBy('normalizedName'))
       .valueChanges();
   }
 
@@ -37,6 +37,7 @@ export class AccountService {
 
   add(acc: Account): void {
     acc.id = this.afs.createId();
+    acc.normalizedName = acc.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     this.afs
       .collection<Account>(this.collectionPath)
       .doc<Account>(acc.id)

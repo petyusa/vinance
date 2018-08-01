@@ -13,13 +13,14 @@ export class CostCategoryService {
 
   constructor(private afs: AngularFirestore) {
     this.costCategories = this.afs
-      .collection<CostCategory>(this.collectionPath, (ref) => ref.orderBy('name'))
+      .collection<CostCategory>(this.collectionPath, (ref) => ref.orderBy('normalizedName'))
       .valueChanges();
   }
 
   add(coca: CostCategory) {
     const id = this.afs.createId();
     coca.id = id;
+    coca.normalizedName = coca.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     this.afs
       .collection<CostCategory>(this.collectionPath)
       .doc<CostCategory>(id)
