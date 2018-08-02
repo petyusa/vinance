@@ -19,7 +19,12 @@ export class NewCostCategoryComponent implements OnInit {
 
   onSubmit() {
     const values = this.coCaForm.value;
-    const coca = new CostCategory(values.id, values.name, values.balance);
+    const coca = new CostCategory(
+      values.id,
+      values.name,
+      values.color,
+      values.balance
+    );
     this.cocaSer.add(coca);
     this.router.navigate(['/costs']);
   }
@@ -28,6 +33,7 @@ export class NewCostCategoryComponent implements OnInit {
     this.coCaForm = new FormGroup({
       id: new FormControl(''),
       name: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required),
       balance: new FormControl(0, Validators.required)
     });
   }

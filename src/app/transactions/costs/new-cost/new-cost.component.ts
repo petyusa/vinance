@@ -39,11 +39,12 @@ export class NewCostComponent implements OnInit, OnDestroy {
       })
     );
     this.subscriptions.push(
-      this.coCaSer.costCategories.subscribe((cats) => {
-        this.cocas = cats;
+      this.coCaSer.costsChanged.subscribe((costs) => {
+        this.cocas = costs;
       })
     );
     this.accSer.refreshAccounts();
+    this.coCaSer.refreshCosts();
     this.initForm();
   }
 
