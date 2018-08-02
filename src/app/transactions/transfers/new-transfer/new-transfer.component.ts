@@ -18,10 +18,16 @@ export class NewTransferComponent implements OnInit, OnDestroy {
   accounts: Account[];
   subscription: Subscription;
 
-  constructor(private ts: TransferService, private ui: UIService, private accSer: AccountService) {}
+  constructor(
+    private ts: TransferService,
+    private ui: UIService,
+    private accSer: AccountService
+  ) {}
 
   ngOnInit() {
-    this.subscription = this.accSer.accountsChanged.subscribe((accs) => (this.accounts = accs));
+    this.subscription = this.accSer.accountsChanged.subscribe(
+      (accs) => (this.accounts = accs)
+    );
     this.accSer.refreshAccounts();
     this.initForm();
   }
@@ -69,10 +75,9 @@ export class NewTransferComponent implements OnInit, OnDestroy {
     });
     if (this.id !== '') {
       this.ts.get(this.id).subscribe((transfer) => {
-        transfer.date = new Date(transfer.date);
         this.transferForm.setValue({
           id: transfer.id,
-          date: transfer.date.toISOString().substring(0, 10),
+          date: new Date(transfer.date.toDate()).toISOString().substring(0, 10),
           to: `${transfer.to}&${transfer.toId}`,
           from: `${transfer.from}&${transfer.fromId}`,
           amount: transfer.amount,
